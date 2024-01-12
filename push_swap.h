@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hiv.fi>             +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/11 21:03:31 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/12 15:01:06 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,12 @@ t_stack	*ft_lstnew(int num, int index);
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
 void	printnode(t_stack *node);
 void	push_b_to_a(t_stack **stack_b, t_stack **stack_a);
+void	swap_a(t_stack **stack);
+void	swap_b(t_stack **stack);
+void	swap_both(t_stack **stack_a, t_stack **stack_b);
+void	ft_lstadd_front(t_stack **stack, t_stack *new);
+void	ft_lstadd_back(t_stack **stack, t_stack *newnode);
+void	rotate_bottom_to_top(t_stack **stack);
+void	rotate_top_to_bottom(t_stack **stack);
 
 #endif
