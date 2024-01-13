@@ -27,10 +27,11 @@ void push_a_to_b(t_stack **stack_a, t_stack **stack_b)
 	ft_lstadd_front(stack_b, new);
 	*stack_a = (*stack_a)->next;
 	free(tmp);
+	update_indexes(stack_a, stack_b);
 	write(1, "pb\n", 3);
 }
 
-void	push_b_to_a(t_stack **stack_b, t_stack **stack_a)
+void	push_b_to_a(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *tmp;
 	t_stack *new;
@@ -44,5 +45,6 @@ void	push_b_to_a(t_stack **stack_b, t_stack **stack_a)
 	ft_lstadd_front(stack_a, new);
 	*stack_b = (*stack_b)->next;
 	free(tmp);
-	write(1, "pb\n", 3);
+	update_indexes(stack_a, stack_b);
+	write(1, "pa\n", 3);
 }

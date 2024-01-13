@@ -37,7 +37,7 @@ int	converttoint(const char *str, int i, int neg)
 	ret = 0;
 	while (str[i] >= 48 && str[i] <= 57)
 	{
-		ret = ret * 10 + str[i] - 48;
+		ret = (ret * 10) + str[i] - 48;
 		if (ret < 0 && neg == 1)
 			return ((int)LONG_MAX);
 		else if (ret < 0 && neg == -1)
@@ -94,6 +94,7 @@ void	ft_lstclear(t_stack **lst, void (*del)(void *))
 }*/
 
 
+
 int	ft_lstsize(t_stack *lst)
 {
 	int	size;
@@ -107,6 +108,29 @@ int	ft_lstsize(t_stack *lst)
 	return (size);
 }
 
+int is_biggest(t_stack **stack)
+{
+	t_stack *temp;
+	int		biggest;
+	int		index;
+
+	biggest = (*stack)->num;
+	index	= (*stack)->index;
+
+	if (!stack)
+		exit (1);
+	temp = *stack;
+	while (temp != NULL)
+	{
+		if (temp->num > biggest)
+		{
+			biggest = temp->num;
+			index	= temp->index;
+		}
+		temp = temp->next;
+	}
+	return (index);
+}
 
 
 void	printnode(t_stack *node)
@@ -114,15 +138,42 @@ void	printnode(t_stack *node)
 	printf("Number---> %d\n", node->num);
 	printf("Value---> %d\n", node->index);
 }
+void	update_indexes(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack *temp_a;
+	t_stack *temp_b;
+	int newindex;
 
+	temp_a = NULL;
+	temp_b = NULL;
 
-void	ft_lstiter(t_stack *lst, void (*f)(t_stack *))
+	if (*stack_a != NULL)
+		temp_a = *stack_a;
+	if (*stack_b != NULL)
+		temp_b = *stack_b;
+	newindex = 0;
+	while (temp_a != NULL)
+	{
+		temp_a->index = newindex;
+		temp_a = temp_a->next;
+		newindex++;
+	}
+	newindex = 0;
+	while (temp_b != NULL)
+	{
+		temp_b->index =  newindex;
+		temp_b = temp_b->next;
+		newindex++;
+	}
+}
+
+void	ft_lstiter(t_stack *stack, void (*f)(t_stack *))
 {
 	t_stack *temp;
 
-	if (!lst && !f)
+	if (!stack && !f)
 		return ;
-	temp = lst;
+	temp = stack;
 	while (temp != NULL)
 	{
 		f(temp);
@@ -185,27 +236,41 @@ int main(int argc, char **argv)
 	t_stack *stack_a;
 	t_stack *stack_b;
 
+	stack_a = NULL;
+	stack_b = NULL;
+
 	if (argc == 1)
 		exit(1);
 	parse_stack_a(argv, argc, &stack_a);
 	//give_value(stack_a);
 	printf("Stack A\n");
 	ft_lstiter(stack_a, &printnode);
-	printf("Stack A\n");
-	rotate_top_to_bottom(&stack_a);
 
+	sort_five(&stack_a, &stack_b);
+
+	//printf("Stack A\n");
+	//ft_lstiter(stack_a, &printnode);
+
+
+  /*
+
+	printf("Stack A\n");
+	rotate_a(&stack_a, &stack_b);
 	printf("Stack A\n");
 	ft_lstiter(stack_a, &printnode);
-
+	push_a_to_b(&stack_a, &stack_b);
+	push_a_to_b(&stack_a, &stack_b);
+	push_a_to_b(&stack_a, &stack_b);
 	push_a_to_b(&stack_a, &stack_b);
 
+	printf("moi\n");
 	printf("Stack A\n");
 	ft_lstiter(stack_a, &printnode);
 
 	printf("Stack B\n");
 	ft_lstiter(stack_b, &printnode);
 
-	rotate_bottom_to_top(&stack_a);
+	rotate_a(&stack_a, &stack_b);
 
 	printf("Stack A\n");
 	ft_lstiter(stack_a, &printnode);
@@ -221,10 +286,10 @@ int main(int argc, char **argv)
 	push_b_to_a(&stack_b, &stack_a);
 	printf("\nStack A\n");
 	ft_lstiter(stack_a, &printnode);
-	swap_a(&stack_a);
+	swap_a(&stack_a, &stack_b);
 	printf("\nStack A\n");
 	ft_lstiter(stack_a, &printnode);
-	swap_b(&stack_b);
+	swap_b(&stack_a, &stack_b);
 	printf("\n\n");
 	printf("\nStack B\n");
 	ft_lstiter(stack_b, &printnode);
@@ -236,10 +301,18 @@ int main(int argc, char **argv)
 	ft_lstiter(stack_a, &printnode);
 	printf("\nStack B\n");
 	ft_lstiter(stack_b, &printnode);
+	rotate_both(&stack_a, &stack_b);
+	printf("\nStack B\n");
+	ft_lstiter(stack_b, &printnode);
+	printf("\nStack A\n");
+	ft_lstiter(stack_a, &printnode);
+	reverse_rotate_both(&stack_a, &stack_b);
+	printf("\nStack B\n");
+	ft_lstiter(stack_b, &printnode);
+	printf("\nStack A\n");
+	ft_lstiter(stack_a, &printnode);
 
-
-
-
+*/
 
 
 	//printf("\nStack B\n");
