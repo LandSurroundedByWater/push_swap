@@ -2,29 +2,25 @@
 
 int find_next_bigger(t_stack **stack, int num)
 {
-	t_stack *temp;
-	int		nearest_bigger;
-	int		index;
+    t_stack *temp;
+    int nearest_bigger;
 
-	nearest_bigger = (*stack)->num;
-	index	= (*stack)->index;
+    temp = *stack;
 
-	if (!stack)
-		exit (1);
-	temp = *stack;
-	while (temp != NULL)
-	{
-		if (nearest_bigger > num)
-			return (nearest_bigger);
-		else
-		{
-			nearest_bigger = temp->num;
-			index	= temp->index;
-		}
-		temp = temp->next;
-	}
-	return (num);
+    if (!temp)
+        exit(1);
+
+    nearest_bigger = lowest(stack);
+
+    while (temp != NULL)
+    {
+        if (nearest_bigger > num)
+            nearest_bigger = temp->num;
+        temp = temp->next;
+    }
+    return nearest_bigger;
 }
+
 
 int is_sorted(t_stack *stack)
 {
@@ -58,48 +54,29 @@ void sort_three(t_stack **stack_a,t_stack **stack_b)
 }
 void sort_five(t_stack **stack_a, t_stack **stack_b)
 {
-	int target;
-	int i;
-	i = 0;
-
 	if (is_sorted(*stack_a) == 1)
 		exit (1);
-	printf("p\n");
 	push_a_to_b(stack_a, stack_b);
-	printf("p\n");
 	push_a_to_b(stack_a, stack_b);
-
 	sort_three(stack_a, stack_b);
-	printf("\nA\n");
-	ft_lstiter(*stack_a, &printnode);
-	printf("\nB\n");
-	ft_lstiter(*stack_b, &printnode);
-	printf("move back\n");
-	target = find_next_bigger(stack_a, (*stack_b)->num);
-	while (stack_b != NULL)
+	while ((*stack_b) != NULL)
 	{
-		if (target == (*stack_b)->num)
+		int target;
+		target = find_next_bigger(stack_a, (*stack_b)->num);
+		if (target < (*stack_b)->num)
 		{
-			push_b_to_a(stack_a, stack_b);
-			rotate_a(stack_a, stack_b);
-		}
-
-		if (target <= ((ft_last_node(*stack_a))->index / 2))
-		{
-				while ((*stack_a)->num != target)
-					rotate_a(stack_a, stack_b);
+			while (ft_last_node(*stack_a)->num != target)
+				rotate_a(stack_a, stack_b);
 		}
 		else
 		{
 			while ((*stack_a)->num != target)
-				reverse_rotate_a(stack_a, stack_b);
+				rotate_a(stack_a, stack_b);
 		}
 		push_b_to_a(stack_a, stack_b);
 	}
-
-	printf("\nA\n");
-	ft_lstiter(*stack_a, &printnode);
-	printf("\nB\n");
-	ft_lstiter(*stack_b, &printnode);
-
+	int x = lowest(stack_a);
+	printf("lowest --> %d", x);
+	while((*stack_a)->num == x)
+		rotate_a(stack_a, stack_b);
 }

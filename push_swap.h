@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/13 14:12:16 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:31:11 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		is_sorted(t_stack *stack);
 void	ft_lstiter(t_stack *stack, void (*f)(t_stack *));
 void	printnode(t_stack *node);
 t_stack	*ft_last_node(t_stack *stack);
+int		lowest(t_stack **stack);
 
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
 void	printnode(t_stack *node);

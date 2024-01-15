@@ -108,6 +108,25 @@ int	ft_lstsize(t_stack *lst)
 	return (size);
 }
 
+int lowest(t_stack **stack)
+{
+	t_stack *temp;
+	int		lowest;
+
+	lowest = (*stack)->num;
+	if (!stack)
+		exit (1);
+	temp = *stack;
+	while (temp != NULL)
+	{
+		if (temp->num < lowest)
+			lowest = temp->num;
+		temp = temp->next;
+	}
+	return (lowest);
+}
+
+
 int is_biggest(t_stack **stack)
 {
 	t_stack *temp;
@@ -243,13 +262,15 @@ int main(int argc, char **argv)
 		exit(1);
 	parse_stack_a(argv, argc, &stack_a);
 	//give_value(stack_a);
+
 	printf("Stack A\n");
 	ft_lstiter(stack_a, &printnode);
 
+
 	sort_five(&stack_a, &stack_b);
 
-	//printf("Stack A\n");
-	//ft_lstiter(stack_a, &printnode);
+	printf("Stack A\n");
+	ft_lstiter(stack_a, &printnode);
 
 
   /*

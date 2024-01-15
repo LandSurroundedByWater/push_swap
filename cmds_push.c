@@ -36,7 +36,7 @@ void	push_b_to_a(t_stack **stack_a, t_stack **stack_b)
 	t_stack *tmp;
 	t_stack *new;
 
-	if ((*stack_b)->next == NULL)
+	if (!stack_b)
 		return;
 	tmp = *stack_b;
 	new = ft_lstnew((*stack_b)->num, (*stack_b)->index);
@@ -47,4 +47,5 @@ void	push_b_to_a(t_stack **stack_a, t_stack **stack_b)
 	free(tmp);
 	update_indexes(stack_a, stack_b);
 	write(1, "pa\n", 3);
+	
 }

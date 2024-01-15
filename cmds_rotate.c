@@ -19,7 +19,7 @@ t_stack	*ft_last_node(t_stack *stack)
 
 void	rotate_bottom_to_top(t_stack **stack)
 {
-    if (*stack == NULL || (*stack)->next == NULL)
+    if (*stack == NULL)
         return ;
 
     t_stack *tmp1 = ft_last_node(*stack);
@@ -32,7 +32,7 @@ void	rotate_bottom_to_top(t_stack **stack)
 
 void	rotate_top_to_bottom(t_stack **stack)
 {
-    if (*stack == NULL || (*stack)->next == NULL)
+    if (*stack == NULL)
         return ;
 
     t_stack *tmp = (*stack);
