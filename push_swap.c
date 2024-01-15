@@ -50,12 +50,10 @@ int	converttoint(const char *str, int i, int neg)
 int	ft_atoi(const char *str)
 {
 	int		i;
-	long	ret;
 	int		neg;
 
 	neg = 1;
 	i = 0;
-	ret = 0;
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -242,8 +240,10 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
     i = 1;
     while (i < argc)
     {
-		int num;
+		long num;
         num = ft_atoi(argv[i]);
+		if (num > 2147483647 || num < -2147483648)
+			exit (1);
         ft_lstadd_back(stack_a, ft_lstnew(num, index));
 		index++;
 		i++;
@@ -263,22 +263,14 @@ int main(int argc, char **argv)
 	parse_stack_a(argv, argc, &stack_a);
 	//give_value(stack_a);
 
-	printf("Stack A\n");
-	ft_lstiter(stack_a, &printnode);
-
 
 	sort_five(&stack_a, &stack_b);
 
-	printf("Stack A\n");
-	ft_lstiter(stack_a, &printnode);
-
-
+	//printf(" end Stack A\n");
+	///ft_lstiter(stack_a, &printnode);
   /*
 
-	printf("Stack A\n");
-	rotate_a(&stack_a, &stack_b);
-	printf("Stack A\n");
-	ft_lstiter(stack_a, &printnode);
+
 	push_a_to_b(&stack_a, &stack_b);
 	push_a_to_b(&stack_a, &stack_b);
 	push_a_to_b(&stack_a, &stack_b);

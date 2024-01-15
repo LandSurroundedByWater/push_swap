@@ -1,26 +1,39 @@
 # include "push_swap.h"
 
-int find_next_bigger(t_stack **stack, int num)
+int find_index(t_stack *stack, int targetNum)
+{
+    while (stack != NULL)
+    {
+        if (stack->num == targetNum)
+        {
+            return stack->index;
+        }
+        stack = stack->next;
+    }
+    return -1;
+}
+
+int find_nearest_bigger(t_stack **stack, int num)
 {
     t_stack *temp;
     int nearest_bigger;
 
-    temp = *stack;
-
-    if (!temp)
+    if (!*stack)
         exit(1);
 
-    nearest_bigger = lowest(stack);
+    temp = *stack;
+    nearest_bigger = INT_MAX;
 
     while (temp != NULL)
     {
-        if (nearest_bigger > num)
+        if (temp->num > num && temp->num < nearest_bigger)
             nearest_bigger = temp->num;
+
         temp = temp->next;
     }
+
     return nearest_bigger;
 }
-
 
 int is_sorted(t_stack *stack)
 {
@@ -41,9 +54,9 @@ void sort_three(t_stack **stack_a,t_stack **stack_b)
 	int biggest;
 
 	if (is_sorted(*stack_a) == 1)
-		exit (1);
+		return;
 	if (*stack_a == NULL)
-		return ;
+		return;
 	biggest = is_biggest(stack_a);
 	if (biggest == 0)
 		rotate_a(stack_a, stack_b);
@@ -59,24 +72,30 @@ void sort_five(t_stack **stack_a, t_stack **stack_b)
 	push_a_to_b(stack_a, stack_b);
 	push_a_to_b(stack_a, stack_b);
 	sort_three(stack_a, stack_b);
-	while ((*stack_b) != NULL)
+	while (*stack_b != NULL)
 	{
-		int target;
-		target = find_next_bigger(stack_a, (*stack_b)->num);
-		if (target < (*stack_b)->num)
+		int x = find_nearest_bigger(stack_a, (*stack_b)->num);
+		if (find_index(*stack_a, x) <= 1)
 		{
-			while (ft_last_node(*stack_a)->num != target)
+			while((*stack_a)->num != x)
 				rotate_a(stack_a, stack_b);
+			push_b_to_a(stack_a, stack_b);
 		}
 		else
 		{
-			while ((*stack_a)->num != target)
-				rotate_a(stack_a, stack_b);
+			while((*stack_a)->num != x)
+				reverse_rotate_a(stack_a, stack_b);
+			push_b_to_a(stack_a, stack_b);
 		}
-		push_b_to_a(stack_a, stack_b);
 	}
-	int x = lowest(stack_a);
-	printf("lowest --> %d", x);
-	while((*stack_a)->num == x)
-		rotate_a(stack_a, stack_b);
+	if (find_index(*stack_a, lowest(stack_a)) >= 2)
+	{
+		while((*stack_a)->num != lowest(stack_a))
+			reverse_rotate_a(stack_a, stack_b);
+	}
+	else
+	{
+		while((*stack_a)->num != lowest(stack_a))
+			rotate_a(stack_a, stack_b);
+	}
 }
