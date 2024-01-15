@@ -8,7 +8,8 @@ SRCS		= push_swap.c \
 			cmds_push.c \
 			cmds_rotate.c \
 			cmds_swap.c \
-			sort_small.c
+			sort_small.c \
+			analyze_stack.c \
 
 OBJ_DIR		= obj
 OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)

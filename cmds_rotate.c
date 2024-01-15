@@ -26,7 +26,6 @@ void	rotate_bottom_to_top(t_stack **stack)
     t_stack *tmp2 = ft_second_last_node(*stack);
     ft_lstadd_front(stack, tmp1);
     tmp2->next = NULL;
-	write(1, "ra\n", 3);
 }
 
 

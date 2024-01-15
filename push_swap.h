@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@student.hiv.fi>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/15 11:31:11 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/15 22:17:27 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ typedef struct s_stack
 {
 	int				num;
 	int 			index;
+	int				order;
 	struct s_stack	*next;
-} t_stack;
+}	t_stack;
 
 t_stack	*ft_lstnew(int num, int index);
 int		is_biggest(t_stack **stack);
@@ -54,5 +55,8 @@ void	reverse_rotate_both(t_stack **stack_a, t_stack **stack_b);
 
 void	sort_three(t_stack **stack, t_stack **stack_b);
 void	sort_five(t_stack **stack_a, t_stack **stack_b);
+
+void	set_order(t_stack **stack);
+int		ft_lstsize(t_stack *lst);
 
 #endif

@@ -154,6 +154,7 @@ void	printnode(t_stack *node)
 {
 	printf("Number---> %d\n", node->num);
 	printf("Value---> %d\n", node->index);
+	printf("Order---> %d\n", node->order);
 }
 void	update_indexes(t_stack **stack_a, t_stack **stack_b)
 {
@@ -211,6 +212,7 @@ t_stack	*ft_lstnew(int num, int index)
 
 	newnode->num = num;
 	newnode->index = index;
+	newnode->order = -1;
 	newnode->next = NULL;
 	return (newnode);
 }
@@ -229,8 +231,6 @@ void	ft_lstadd_back(t_stack **stack, t_stack *newnode)
     }
 }
 
-
-
 void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 {
     int i;
@@ -242,8 +242,8 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
     {
 		long num;
         num = ft_atoi(argv[i]);
-		if (num > 2147483647 || num < -2147483648)
-			exit (1);
+		//if (num > 2147483647 || num < -2147483648)
+		//	exit (1);
         ft_lstadd_back(stack_a, ft_lstnew(num, index));
 		index++;
 		i++;
@@ -253,21 +253,21 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
-	t_stack *stack_b;
+	//t_stack *stack_b;
 
 	stack_a = NULL;
-	stack_b = NULL;
+	//stack_b = NULL;
 
-	if (argc == 1)
-		exit(1);
+//	if (argc == 1)
+//		exit(1);
 	parse_stack_a(argv, argc, &stack_a);
 	//give_value(stack_a);
 
+	set_order(&stack_a);
+	//sort_five(&stack_a, &stack_b);
 
-	sort_five(&stack_a, &stack_b);
-
-	//printf(" end Stack A\n");
-	///ft_lstiter(stack_a, &printnode);
+	printf(" end Stack A\n");
+	ft_lstiter(stack_a, &printnode);
   /*
 
 
