@@ -1,8 +1,7 @@
-#include "push_swap.h"
 
+#include"push_swap.h"
 
-
-t_stack *lowest_order(t_stack **stack)
+t_stack	*lowest_order(t_stack **stack)
 {
 	t_stack *temp;
 	int		lowest;
@@ -26,16 +25,10 @@ void set_order(t_stack **stack)
 {
     int order;
 
-    order = 1;    
+    order = 1;
     while(order <= ft_lstsize(*stack))
     {
         lowest_order(stack)->order = order;
         order++;
     }
 }
-
-
-
-
-
-

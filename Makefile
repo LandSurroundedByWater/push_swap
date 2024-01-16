@@ -10,6 +10,7 @@ SRCS		= push_swap.c \
 			cmds_swap.c \
 			sort_small.c \
 			analyze_stack.c \
+			lis_analyzer.c \
 
 OBJ_DIR		= obj
 OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)

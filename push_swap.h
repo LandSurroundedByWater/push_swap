@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaari <tsaari@student.hiv.fi>             +#+  +:+       +#+        */
+/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/15 22:17:27 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/16 15:11:36 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-t_stack	*ft_lstnew(int num, int index);
+t_stack	*ft_lstnew(int num, int index, int order);
 int		is_biggest(t_stack **stack);
 void	update_indexes(t_stack **stack_a, t_stack **stack_b);
 int		is_sorted(t_stack *stack);
@@ -35,6 +35,7 @@ void	ft_lstiter(t_stack *stack, void (*f)(t_stack *));
 void	printnode(t_stack *node);
 t_stack	*ft_last_node(t_stack *stack);
 int		lowest(t_stack **stack);
+int lis_analyzer(t_stack **stack, t_stack **stack_b);
 
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
 void	printnode(t_stack *node);
@@ -58,5 +59,6 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b);
 
 void	set_order(t_stack **stack);
 int		ft_lstsize(t_stack *lst);
+t_stack *lowest_order(t_stack **stack);
 
 #endif

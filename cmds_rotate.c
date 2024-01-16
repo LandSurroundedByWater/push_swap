@@ -35,7 +35,7 @@ void	rotate_top_to_bottom(t_stack **stack)
         return ;
 
     t_stack *tmp = (*stack);
-    ft_lstadd_back(stack, ft_lstnew(tmp->num, tmp->index));
+    ft_lstadd_back(stack, ft_lstnew(tmp->num, tmp->index, tmp->order));
 	(*stack) = (*stack)->next;
 	free(tmp);
 }

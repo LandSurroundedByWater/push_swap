@@ -153,7 +153,7 @@ int is_biggest(t_stack **stack)
 void	printnode(t_stack *node)
 {
 	printf("Number---> %d\n", node->num);
-	printf("Value---> %d\n", node->index);
+	printf("Index---> %d\n", node->index);
 	printf("Order---> %d\n", node->order);
 }
 void	update_indexes(t_stack **stack_a, t_stack **stack_b)
@@ -201,9 +201,8 @@ void	ft_lstiter(t_stack *stack, void (*f)(t_stack *))
 
 
 
-t_stack	*ft_lstnew(int num, int index)
+t_stack	*ft_lstnew(int num, int index, int order)
 {
-
 	t_stack	*newnode;
 
 	newnode = (t_stack *)malloc(sizeof(*newnode));
@@ -212,16 +211,14 @@ t_stack	*ft_lstnew(int num, int index)
 
 	newnode->num = num;
 	newnode->index = index;
-	newnode->order = -1;
+	newnode->order = order;
 	newnode->next = NULL;
 	return (newnode);
 }
 void	ft_lstadd_back(t_stack **stack, t_stack *newnode)
 {
     if (*stack == NULL)
-    {
         *stack = newnode;
-    }
     else
     {
         t_stack *temp = *stack;
@@ -235,6 +232,7 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 {
     int i;
 	int index;
+	int order;
 
 	index = 0;
     i = 1;
@@ -242,9 +240,10 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
     {
 		long num;
         num = ft_atoi(argv[i]);
+		order = -1;
 		//if (num > 2147483647 || num < -2147483648)
 		//	exit (1);
-        ft_lstadd_back(stack_a, ft_lstnew(num, index));
+        ft_lstadd_back(stack_a, ft_lstnew(num, index, order));
 		index++;
 		i++;
     }
@@ -253,10 +252,10 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
-	//t_stack *stack_b;
+	t_stack *stack_b;
 
 	stack_a = NULL;
-	//stack_b = NULL;
+	stack_b = NULL;
 
 //	if (argc == 1)
 //		exit(1);
@@ -266,71 +265,13 @@ int main(int argc, char **argv)
 	set_order(&stack_a);
 	//sort_five(&stack_a, &stack_b);
 
-	printf(" end Stack A\n");
-	ft_lstiter(stack_a, &printnode);
-  /*
+	//printf(" end Stack A\n");
+	//ft_lstiter(stack_a, &printnode);
 
 
-	push_a_to_b(&stack_a, &stack_b);
-	push_a_to_b(&stack_a, &stack_b);
-	push_a_to_b(&stack_a, &stack_b);
-	push_a_to_b(&stack_a, &stack_b);
 
-	printf("moi\n");
-	printf("Stack A\n");
-	ft_lstiter(stack_a, &printnode);
-
-	printf("Stack B\n");
-	ft_lstiter(stack_b, &printnode);
-
-	rotate_a(&stack_a, &stack_b);
-
-	printf("Stack A\n");
-	ft_lstiter(stack_a, &printnode);
-
-	push_a_to_b(&stack_a, &stack_b);
-
-	push_a_to_b(&stack_a, &stack_b);
-	printf("\nStack A\n");
-	ft_lstiter(stack_a, &printnode);
-
-	printf("\nStack B\n");
-	ft_lstiter(stack_b, &printnode);
-	push_b_to_a(&stack_b, &stack_a);
-	printf("\nStack A\n");
-	ft_lstiter(stack_a, &printnode);
-	swap_a(&stack_a, &stack_b);
-	printf("\nStack A\n");
-	ft_lstiter(stack_a, &printnode);
-	swap_b(&stack_a, &stack_b);
-	printf("\n\n");
-	printf("\nStack B\n");
-	ft_lstiter(stack_b, &printnode);
-	push_a_to_b(&stack_a, &stack_b);
-	printf("\nStack A\n");
-	ft_lstiter(stack_a, &printnode);
-	swap_both(&stack_a, &stack_b);
-	printf("\nStack A\n");
-	ft_lstiter(stack_a, &printnode);
-	printf("\nStack B\n");
-	ft_lstiter(stack_b, &printnode);
-	rotate_both(&stack_a, &stack_b);
-	printf("\nStack B\n");
-	ft_lstiter(stack_b, &printnode);
-	printf("\nStack A\n");
-	ft_lstiter(stack_a, &printnode);
-	reverse_rotate_both(&stack_a, &stack_b);
-	printf("\nStack B\n");
-	ft_lstiter(stack_b, &printnode);
-	printf("\nStack A\n");
-	ft_lstiter(stack_a, &printnode);
-
-*/
+	lis_analyzer(&stack_a, &stack_b);
 
 
-	//printf("\nStack B\n");
-	//ft_lstiter(stack_b, &printnode);
-	//printf("\nStack B\n");
-	//ft_lstclear(&stack_a, &free);
 	return 0;
 }
