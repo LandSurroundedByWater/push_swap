@@ -28,7 +28,6 @@ int find_nearest_bigger(t_stack **stack, int num)
     {
         if (temp->num > num && temp->num < nearest_bigger)
             nearest_bigger = temp->num;
-
         temp = temp->next;
     }
 	if (nearest_bigger == INT_MAX)

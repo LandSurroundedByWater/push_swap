@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/16 15:11:36 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/17 14:22:32 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_stack
 	int				num;
 	int 			index;
 	int				order;
+	int				flag;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -35,7 +36,17 @@ void	ft_lstiter(t_stack *stack, void (*f)(t_stack *));
 void	printnode(t_stack *node);
 t_stack	*ft_last_node(t_stack *stack);
 int		lowest(t_stack **stack);
-int lis_analyzer(t_stack **stack, t_stack **stack_b);
+void	flag_increasing(t_stack **stack);
+void	push_not_flagged(t_stack **stack_a, t_stack **stack_b);
+void	set_order(t_stack **stack);
+int		ft_lstsize(t_stack *lst);
+t_stack	*lowest_order(t_stack **stack);
+int		find_nearest_bigger(t_stack **stack, int num);
+int		find_index(t_stack *stack, int targetNum);
+void	count_costs(t_stack **stack_a, t_stack **stack_b);
+void	push_back_node(t_stack **stack_a, t_stack **stack_b);
+t_stack	*ft_second_last_node(t_stack *stack);
+void	flag_biggest_and_lowest(t_stack **stack);
 
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
 void	printnode(t_stack *node);
@@ -57,8 +68,6 @@ void	reverse_rotate_both(t_stack **stack_a, t_stack **stack_b);
 void	sort_three(t_stack **stack, t_stack **stack_b);
 void	sort_five(t_stack **stack_a, t_stack **stack_b);
 
-void	set_order(t_stack **stack);
-int		ft_lstsize(t_stack *lst);
-t_stack *lowest_order(t_stack **stack);
+
 
 #endif

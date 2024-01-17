@@ -1,34 +1,5 @@
 
-#include <stdio.h>
 #include "push_swap.h"
-
-
-
-/*void	give_value(t_stack *stack_a)
-{
-	int biggest;
-	int len;
-
-	len = 0;
-
-	len = ft_lstsize(stack_a);
-    int maxVal = stack_a->num;
-    t_stack * temp = stack_a->next;
-
-    while (temp != NULL)
-	{
-        if (temp->num > maxVal && temp->index == 0)
-		{
-            maxVal = temp->num;
-			temp->index = len;
-			len--;
-        }
-        temp = temp->next;
-    }
-
-}*/
-
-
 
 int	converttoint(const char *str, int i, int neg)
 {
@@ -92,70 +63,6 @@ void	ft_lstclear(t_stack **lst, void (*del)(void *))
 }*/
 
 
-
-int	ft_lstsize(t_stack *lst)
-{
-	int	size;
-
-	size = 0;
-	while (lst != 0)
-	{
-		size++;
-		lst = lst->next;
-	}
-	return (size);
-}
-
-int lowest(t_stack **stack)
-{
-	t_stack *temp;
-	int		lowest;
-
-	lowest = (*stack)->num;
-	if (!stack)
-		exit (1);
-	temp = *stack;
-	while (temp != NULL)
-	{
-		if (temp->num < lowest)
-			lowest = temp->num;
-		temp = temp->next;
-	}
-	return (lowest);
-}
-
-
-int is_biggest(t_stack **stack)
-{
-	t_stack *temp;
-	int		biggest;
-	int		index;
-
-	biggest = (*stack)->num;
-	index	= (*stack)->index;
-
-	if (!stack)
-		exit (1);
-	temp = *stack;
-	while (temp != NULL)
-	{
-		if (temp->num > biggest)
-		{
-			biggest = temp->num;
-			index	= temp->index;
-		}
-		temp = temp->next;
-	}
-	return (index);
-}
-
-
-void	printnode(t_stack *node)
-{
-	printf("Number---> %d\n", node->num);
-	printf("Index---> %d\n", node->index);
-	printf("Order---> %d\n", node->order);
-}
 void	update_indexes(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *temp_a;
@@ -185,48 +92,6 @@ void	update_indexes(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	ft_lstiter(t_stack *stack, void (*f)(t_stack *))
-{
-	t_stack *temp;
-
-	if (!stack && !f)
-		return ;
-	temp = stack;
-	while (temp != NULL)
-	{
-		f(temp);
-		temp = temp->next;
-	}
-}
-
-
-
-t_stack	*ft_lstnew(int num, int index, int order)
-{
-	t_stack	*newnode;
-
-	newnode = (t_stack *)malloc(sizeof(*newnode));
-	if (!newnode)
-		return (NULL);
-
-	newnode->num = num;
-	newnode->index = index;
-	newnode->order = order;
-	newnode->next = NULL;
-	return (newnode);
-}
-void	ft_lstadd_back(t_stack **stack, t_stack *newnode)
-{
-    if (*stack == NULL)
-        *stack = newnode;
-    else
-    {
-        t_stack *temp = *stack;
-        while (temp->next != NULL)
-            temp = temp->next;
-        temp->next = newnode;
-    }
-}
 
 void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 {
@@ -247,6 +112,7 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 		index++;
 		i++;
     }
+
 }
 
 int main(int argc, char **argv)
@@ -260,17 +126,40 @@ int main(int argc, char **argv)
 //	if (argc == 1)
 //		exit(1);
 	parse_stack_a(argv, argc, &stack_a);
+
 	//give_value(stack_a);
 
+//	printf("\n\n PARSE Stack A\n");
+//	ft_lstiter(stack_a, &printnode);
+
 	set_order(&stack_a);
+
+//	printf("\n\n SET Stack A\n");
+//	ft_lstiter(stack_a, &printnode);
+
+	flag_increasing(&stack_a);
+	flag_biggest_and_lowest(&stack_a);
+
+//	printf("\n\n FLAG Stack A\n");
+//	ft_lstiter(stack_a, &printnode);
+
+	push_not_flagged(&stack_a, &stack_b);
+
+
+	//count_costs(&stack_a, &stack_b);
 	//sort_five(&stack_a, &stack_b);
 
-	//printf(" end Stack A\n");
-	//ft_lstiter(stack_a, &printnode);
+//	printf("\n\n PUSHED Stack A\n");
+//	ft_lstiter(stack_a, &printnode);
+
+//	printf("\n\n PUSHED Stack B\n");
+//	ft_lstiter(stack_b, &printnode);
 
 
+	//push_back_node(&stack_a, &stack_b);
 
-	lis_analyzer(&stack_a, &stack_b);
+
+	//lis_analyzer(&stack_a, &stack_b);
 
 
 	return 0;

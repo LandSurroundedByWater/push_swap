@@ -1,21 +1,5 @@
 #include "push_swap.h"
 
-t_stack	*ft_second_last_node(t_stack *stack)
-{
-	if (stack == 0)
-		return (0);
-	while (stack->next->next != 0)
-		stack = stack->next;
-	return (stack);
-}
-t_stack	*ft_last_node(t_stack *stack)
-{
-	if (stack == 0)
-		return (0);
-	while (stack->next != 0)
-		stack = stack->next;
-	return (stack);
-}
 
 void	rotate_bottom_to_top(t_stack **stack)
 {
@@ -28,16 +12,15 @@ void	rotate_bottom_to_top(t_stack **stack)
     tmp2->next = NULL;
 }
 
-
 void	rotate_top_to_bottom(t_stack **stack)
 {
+	t_stack *temp;
+
     if (*stack == NULL)
         return ;
-
-    t_stack *tmp = (*stack);
-    ft_lstadd_back(stack, ft_lstnew(tmp->num, tmp->index, tmp->order));
+	temp = *stack;
 	(*stack) = (*stack)->next;
-	free(tmp);
+    ft_lstadd_back(stack, temp);
 }
 void rotate_a(t_stack **stack_a, t_stack **stack_b)
 {

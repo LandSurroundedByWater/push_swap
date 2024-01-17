@@ -1,17 +1,5 @@
 #include "push_swap.h"
 
-void	ft_lstadd_front(t_stack **stack, t_stack *new)
-{
-
-	if (*stack == 0)
-	{
-		*stack = new;
-		return ;
-	}
-	new->next = *stack;
-	*stack = new;
-}
-
 
 void push_a_to_b(t_stack **stack_a, t_stack **stack_b)
 {
