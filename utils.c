@@ -56,6 +56,7 @@ t_stack	*ft_lstnew(int num, int index, int order)
 	newnode->order = order;
 	newnode->next = NULL;
 	newnode->flag = 0;
+	newnode->cost = -1;
 	return (newnode);
 }
 void	ft_lstadd_back(t_stack **stack, t_stack *newnode)

@@ -137,30 +137,44 @@ int main(int argc, char **argv)
 //	printf("\n\n SET Stack A\n");
 //	ft_lstiter(stack_a, &printnode);
 
-	flag_increasing(&stack_a);
-	flag_biggest_and_lowest(&stack_a);
+	flag_increasing(stack_a);
 
 //	printf("\n\n FLAG Stack A\n");
+
 //	ft_lstiter(stack_a, &printnode);
 
 	push_not_flagged(&stack_a, &stack_b);
 
+	printf("\n\n TOB Stack A\n");
+	ft_lstiter(stack_a, &printnode);
 
-	//count_costs(&stack_a, &stack_b);
+	printf("\n\n TOB Stack B\n");
+	ft_lstiter(stack_b, &printnode);
+
+
+	reset_costs(&stack_a, &stack_b);
+
+	printf("\n\n PUSHED Stack A\n");
+	ft_lstiter(stack_a, &printnode);
+
+	printf("\n\n PUSHED Stack B\n");
+	ft_lstiter(stack_b, &printnode);
+
+
+	find_cheapest_and_push(&stack_a, &stack_b);
 	//sort_five(&stack_a, &stack_b);
 
-//	printf("\n\n PUSHED Stack A\n");
-//	ft_lstiter(stack_a, &printnode);
+	printf("\n\n PUSHED BACK Stack A\n");
+	ft_lstiter(stack_a, &printnode);
 
-//	printf("\n\n PUSHED Stack B\n");
-//	ft_lstiter(stack_b, &printnode);
+	printf("\n\n PUSHED BACK Stack B\n");
+	ft_lstiter(stack_b, &printnode);
 
+
+//	printf("\n\nStack A  %d\n", ft_lstsize(stack_a));
 
 	//push_back_node(&stack_a, &stack_b);
-
-
 	//lis_analyzer(&stack_a, &stack_b);
-
 
 	return 0;
 }

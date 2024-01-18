@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/17 14:22:32 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/18 14:34:57 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,35 @@ typedef struct s_stack
 	int 			index;
 	int				order;
 	int				flag;
+	int				cost;
 	struct s_stack	*next;
 }	t_stack;
+
+void	ft_lstiter(t_stack *stack, void (*f)(t_stack *));
+void	printnode(t_stack *node);
 
 t_stack	*ft_lstnew(int num, int index, int order);
 int		is_biggest(t_stack **stack);
 void	update_indexes(t_stack **stack_a, t_stack **stack_b);
 int		is_sorted(t_stack *stack);
-void	ft_lstiter(t_stack *stack, void (*f)(t_stack *));
-void	printnode(t_stack *node);
 t_stack	*ft_last_node(t_stack *stack);
-int		lowest(t_stack **stack);
-void	flag_increasing(t_stack **stack);
+t_stack	*lowest(t_stack **stack);
+void	flag_increasing(t_stack *stack);
 void	push_not_flagged(t_stack **stack_a, t_stack **stack_b);
 void	set_order(t_stack **stack);
 int		ft_lstsize(t_stack *lst);
 t_stack	*lowest_order(t_stack **stack);
-int		find_nearest_bigger(t_stack **stack, int num);
+t_stack *find_nearest_bigger(t_stack **stack, int num);
 int		find_index(t_stack *stack, int targetNum);
-void	count_costs(t_stack **stack_a, t_stack **stack_b);
-void	push_back_node(t_stack **stack_a, t_stack **stack_b);
+void	count_costs_to_top(t_stack **stack_a, t_stack **stack_b);
 t_stack	*ft_second_last_node(t_stack *stack);
-void	flag_biggest_and_lowest(t_stack **stack);
+void	cost_to_top(t_stack **stack, t_stack *node);
+void	reset_flags(t_stack *stack);
+void	reset_costs(t_stack **stack_a, t_stack **stack_b);
+int		count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stack *node_b);
+void find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b);
 
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
-void	printnode(t_stack *node);
 void	push_b_to_a(t_stack **stack_b, t_stack **stack_a);
 void	swap_a(t_stack **stack_a, t_stack **stack_b);
 void	swap_b(t_stack **stack_a, t_stack **stack_b);
@@ -67,6 +71,8 @@ void	reverse_rotate_both(t_stack **stack_a, t_stack **stack_b);
 
 void	sort_three(t_stack **stack, t_stack **stack_b);
 void	sort_five(t_stack **stack_a, t_stack **stack_b);
+
+void	printnode(t_stack *node);
 
 
 

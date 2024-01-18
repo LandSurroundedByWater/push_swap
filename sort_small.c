@@ -13,27 +13,7 @@ int find_index(t_stack *stack, int targetNum)
     return -1;
 }
 
-int find_nearest_bigger(t_stack **stack, int num)
-{
-    t_stack *temp;
-    int nearest_bigger;
 
-    if (!*stack)
-        exit(1);
-
-    temp = *stack;
-    nearest_bigger = INT_MAX;
-
-    while (temp != NULL)
-    {
-        if (temp->num > num && temp->num < nearest_bigger)
-            nearest_bigger = temp->num;
-        temp = temp->next;
-    }
-	if (nearest_bigger == INT_MAX)
-		return lowest(stack);
-    return nearest_bigger;
-}
 
 int is_sorted(t_stack *stack)
 {
@@ -73,7 +53,7 @@ void sort_five(t_stack **stack_a, t_stack **stack_b)
 	sort_three(stack_a, stack_b);
 	while (*stack_b != NULL)
 	{
-		int x = find_nearest_bigger(stack_a, (*stack_b)->num);
+		int x = find_nearest_bigger(stack_a, (*stack_b)->num)->num;
 		if (find_index(*stack_a, x) <= ft_last_node(*stack_a)->index / 2)
 		{
 			while((*stack_a)->num != x)
@@ -87,14 +67,14 @@ void sort_five(t_stack **stack_a, t_stack **stack_b)
 			push_b_to_a(stack_a, stack_b);
 		}
 	}
-if (find_index(*stack_a, lowest(stack_a)) >= 2)
+if (find_index(*stack_a, lowest(stack_a)->num) >= 2)
 	{
-		while((*stack_a)->num != lowest(stack_a))
+		while((*stack_a)->num != lowest(stack_a)->num)
 			reverse_rotate_a(stack_a, stack_b);
 	}
 	else
 	{
-		while((*stack_a)->num != lowest(stack_a))
+		while((*stack_a)->num != lowest(stack_a)->num)
 			rotate_a(stack_a, stack_b);
 	}
 }

@@ -1,10 +1,12 @@
 #include "push_swap.h"
 
-int lowest(t_stack **stack)
+t_stack *lowest(t_stack **stack)
 {
 	t_stack *temp;
+	t_stack *lnode;
 	int		lowest;
 
+	lnode = NULL;
 	lowest = (*stack)->num;
 	if (!stack)
 		exit (1);
@@ -12,10 +14,13 @@ int lowest(t_stack **stack)
 	while (temp != NULL)
 	{
 		if (temp->num < lowest)
+		{
+			lnode = temp;
 			lowest = temp->num;
+		}
 		temp = temp->next;
 	}
-	return (lowest);
+	return (lnode);
 }
 
 int is_biggest(t_stack **stack)
@@ -40,4 +45,16 @@ int is_biggest(t_stack **stack)
 		temp = temp->next;
 	}
 	return (index);
+}
+
+void	reset_flags(t_stack *stack)
+{
+	t_stack *temp;
+
+	temp = stack;
+	while (temp != NULL)
+	{
+		temp->order = 0;
+		temp = temp->next;
+	}
 }

@@ -6,6 +6,7 @@ void	printnode(t_stack *node)
 	printf("Index---> %d\n", node->index);
 	printf("Order---> %d\n", node->order);
 	printf("Flag---> %d\n", node->flag);
+	printf("Cost---> %d\n", node->cost);
 }
 
 void	ft_lstiter(t_stack *stack, void (*f)(t_stack *))
