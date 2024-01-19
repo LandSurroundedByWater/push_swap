@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:44:22 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/18 14:41:53 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/19 10:47:21 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@ void	push_not_flagged(t_stack **stack_a, t_stack **stack_b)
 {
 	int x;
 
+	x =ft_lstsize(*stack_a);
+	while(x > 0)
+	{
+		if ((*stack_a)->flag != -1 && (*stack_a)->order > x / 2)
+			push_a_to_b(stack_a, stack_b);
+		else
+			rotate_a(stack_a, stack_b);
+		x--;
+	}
 	x =ft_lstsize(*stack_a);
 	while(x > 0)
 	{
@@ -56,7 +65,7 @@ void count_costs_to_top(t_stack **stack_a, t_stack **stack_b)
 			temp = temp->next;
 		}
 }
-void move_lowindex_nodes(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_stack *node_b)
+void move_smallindex_nodes(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_stack *node_b)
 {
 	if (node_a->index > node_b->index)
 	{
@@ -78,16 +87,18 @@ void move_lowindex_nodes(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, 
 
 void move_highindex_nodes(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_stack *node_b)
 {
-	if (node_a->index > node_b->index)
+	int a = ft_lstsize(*stack_a);
+	int b = ft_lstsize(*stack_b);
+	if ((a - node_a->index) > (b - node_b->index))
 	{
-		while (node_a->index != node_b->index)
+		while ((a - node_a->index) != (b - node_b->index))
 			reverse_rotate_a(stack_a, stack_b);
 		while (node_a->index != 0)
 			reverse_rotate_both(stack_a, stack_b);
 	}
 	else
 	{
-		while (node_b->index != node_a->index)
+		while ((a - node_a->index) != (b - node_b->index))
 			reverse_rotate_b(stack_a, stack_b);
 		while (node_b->index != 0)
 			reverse_rotate_both(stack_a, stack_b);
@@ -103,15 +114,15 @@ void move_index_low_and_high(t_stack **stack_a, t_stack **stack_b, t_stack *node
 			rotate_a(stack_a, stack_b);
 	}
 	while(node_a->index != 0)
-		reverse_rotate_a(stack_a, stack_a);
+		reverse_rotate_a(stack_a, stack_b);
 
 	if (node_b->index < (ft_lstsize(*stack_b) / 2))
 	{
 		while(node_b->index != 0)
-			rotate_a(stack_a, stack_b);
+			rotate_b(stack_a, stack_b);
 	}
 	while(node_b->index != 0)
-		reverse_rotate_a(stack_a, stack_a);
+		reverse_rotate_b(stack_a, stack_b);
 	push_b_to_a(stack_a, stack_b);
 	reset_costs(stack_a, stack_b);
 }
@@ -120,9 +131,8 @@ void push_back_node(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_sta
 {
 	if (node_a->index < (ft_lstsize(*stack_a) / 2) && node_b->index < (ft_lstsize(*stack_b) / 2))
 	{
-		move_lowindex_nodes(stack_a, stack_b, node_a, node_b);
+		move_smallindex_nodes(stack_a, stack_b, node_a, node_b);
 	}
-
 	else if (node_a->index > (ft_lstsize(*stack_a) / 2) && node_b->index > (ft_lstsize(*stack_b) / 2))
 	{
 		move_highindex_nodes(stack_a, stack_b, node_a, node_b);
@@ -131,13 +141,6 @@ void push_back_node(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_sta
 	{
 		move_index_low_and_high(stack_a, stack_b, node_a, node_b);
 	}
-
-	printf("\n\n PUSHED to %d in Stack A\n", node_a->num);
-	ft_lstiter(*stack_a, &printnode);
-
-	printf("\n\n PUSHED %d from Stack B\n", node_b->num);
-	ft_lstiter(*stack_b, &printnode);
-
 }
 void find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b)
 {
@@ -148,7 +151,7 @@ void find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b)
 	int cheapest;
 	node_a = *stack_a;
 	node_b = *stack_b;
-	cheapest = (*stack_b)->cost;
+	cheapest = INT_MAX;
 	if (!stack_b)
 		exit(1);
 	temp = *stack_b;
@@ -157,12 +160,21 @@ void find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b)
 	{
 		if (temp->cost < cheapest)
 		{
+			cheapest = temp->cost;
 			node_b = temp;
 			node_a = find_nearest_bigger(stack_a, temp->num);
-			cheapest = temp->cost;
 		}
 		temp = temp->next;
 	}
+	//printf("\nPUSHED %d\n", node_b->cost);
+	push_back_node(stack_a, stack_b, node_a, node_b);
+
+}
+
+void sort_big (t_stack **stack_a, t_stack **stack_b)
+{
 	while (ft_lstsize(*stack_b) != 0)
-		push_back_node(stack_a, stack_b, node_a, node_b);
+	{
+		find_cheapest_and_push(stack_a, stack_b);
+	}
 }

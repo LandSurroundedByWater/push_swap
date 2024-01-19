@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/18 14:34:57 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/19 08:25:21 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	reset_flags(t_stack *stack);
 void	reset_costs(t_stack **stack_a, t_stack **stack_b);
 int		count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stack *node_b);
 void find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b);
+void sort_big (t_stack **stack_a, t_stack **stack_b);
 
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
 void	push_b_to_a(t_stack **stack_b, t_stack **stack_a);
@@ -73,7 +74,5 @@ void	sort_three(t_stack **stack, t_stack **stack_b);
 void	sort_five(t_stack **stack_a, t_stack **stack_b);
 
 void	printnode(t_stack *node);
-
-
 
 #endif
