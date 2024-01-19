@@ -10,9 +10,11 @@ SRCS		= push_swap.c \
 			cmds_swap.c \
 			sort_small.c \
 			analyze_stack.c \
+			analyze_stack2.c \
 			sort_big.c \
 			utils.c \
 			utils2.c \
+			ft_free.c \
 			extras.c \
 
 OBJ_DIR		= obj

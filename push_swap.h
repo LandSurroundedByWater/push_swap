@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/19 08:25:21 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:36:06 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,15 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+typedef struct
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+}	stacks;
+
 void	ft_lstiter(t_stack *stack, void (*f)(t_stack *));
 void	printnode(t_stack *node);
+
 
 t_stack	*ft_lstnew(int num, int index, int order);
 int		is_biggest(t_stack **stack);
@@ -53,6 +60,11 @@ void	reset_costs(t_stack **stack_a, t_stack **stack_b);
 int		count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stack *node_b);
 void find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b);
 void sort_big (t_stack **stack_a, t_stack **stack_b);
+
+void	*ft_free(t_stack **ptr, t_stack **ptr2);
+
+
+
 
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
 void	push_b_to_a(t_stack **stack_b, t_stack **stack_a);

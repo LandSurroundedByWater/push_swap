@@ -1,5 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/19 11:05:56 by tsaari            #+#    #+#             */
+/*   Updated: 2024/01/19 14:39:17 by tsaari           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
+
+void initializeStacks(stacks *stacks)
+{
+    stacks->stack_a = NULL;
+    stacks->stack_b = NULL;
+}
 
 int	converttoint(const char *str, int i, int neg)
 {
@@ -38,29 +55,7 @@ int	ft_atoi(const char *str)
 	return (neg * converttoint(str, i, neg));
 }
 
-/*void	ft_lstdelone(t_stack *lst, void (*del)(void *))
-{
-	if (!lst || !del)
-		return ;
-	(del)(&(lst->num));
-	(del)(&(lst->index));
-	free(lst);
-}
 
-void	ft_lstclear(t_stack **lst, void (*del)(void *))
-{
-	t_stack	*temp;
-
-	if (!lst || !del)
-		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = temp;
-	}
-	*lst = 0;
-}*/
 
 
 void	update_indexes(t_stack **stack_a, t_stack **stack_b)
@@ -92,7 +87,6 @@ void	update_indexes(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-
 void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 {
     int i;
@@ -112,17 +106,17 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 		index++;
 		i++;
     }
-
 }
 
 int main(int argc, char **argv)
 {
+	stacks stacks;
 	t_stack *stack_a;
 	t_stack *stack_b;
 	t_stack *temp;
 
-	stack_a = NULL;
-	stack_b = NULL;
+	stack_a = stacks.stack_a;
+	stack_b = stacks.stack_b;
 	parse_stack_a(argv, argc, &stack_a);
 	set_order(&stack_a);
 	flag_increasing(stack_a);
@@ -138,9 +132,5 @@ int main(int argc, char **argv)
 		else
 			reverse_rotate_a(&stack_a, &stack_b);
 	}
-
-	//printf("STACK A\n");
-
-	//ft_lstiter(stack_a, &printnode);
 	return 0;
 }

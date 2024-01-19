@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/19 11:05:46 by tsaari            #+#    #+#             */
+/*   Updated: 2024/01/19 11:19:02 by tsaari           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*ft_last_node(t_stack *stack)
@@ -20,7 +32,6 @@ t_stack	*ft_second_last_node(t_stack *stack)
 
 void	ft_lstadd_front(t_stack **stack, t_stack *new)
 {
-
 	if (*stack == 0)
 	{
 		*stack = new;

@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/19 11:06:52 by tsaari            #+#    #+#             */
+/*   Updated: 2024/01/19 11:36:11 by tsaari           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "push_swap.h"
 
 int find_index(t_stack *stack, int targetNum)
 {
+	if (!stack)
+		
     while (stack != NULL)
     {
         if (stack->num == targetNum)
