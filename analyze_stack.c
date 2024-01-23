@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:09:21 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/19 11:46:54 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:25:02 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,41 +40,7 @@ t_stack *find_nearest_bigger(t_stack **stack, int num)
 	return (nb_node);
 }
 
-void	flag_increasing(t_stack *stack)
-{
-	t_stack *temp;
-	int max;
-	int div;
 
-	if (!stack)
-		ft_free(&stack, NULL);
-	div = 1;
-	max = 1;
-	while (div * div <= ft_lstsize(stack))
-		div++;
-	temp = stack;
-	while (temp->order != 1)
-		temp = temp->next;
-	while (temp != NULL)
-	{
-		if (temp->order >= max && temp->order <= max + (ft_lstsize(stack) / div + ft_lstsize(stack) / 50))
-		{
-			max = temp->order;
-			temp->flag = -1;
-		}
-		temp = temp->next;
-	}
-	temp = stack;
-	while (temp->flag != -1)
-	{
-		if (temp->order >= max && temp->order <= max + (ft_lstsize(stack) / div + ft_lstsize(stack) / 50))
-		{
-			max = temp->order;
-			temp->flag = -1;
-		}
-		temp = temp->next;
-	}
-}
 
 int count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stack *node_b)
 {
@@ -84,8 +50,8 @@ int count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stac
 
 	if (!node_a || !node_b || !stack_a || !stack_b)
 		ft_free(&stack_a, &stack_b);
-	stsize_a = ft_lstsize(stack_a);
-	stsize_b = ft_lstsize(stack_b);
+	stsize_a = ft_lstsize_ps(stack_a);
+	stsize_b = ft_lstsize_ps(stack_b);
 	if (node_a->index < (stsize_a / 2) || node_b->index < (stsize_b / 2))
 	{
 		if (node_a->order > node_b->order)

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:07:02 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/19 14:00:05 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:25:46 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,34 @@ void	reset_flags(t_stack *stack)
 	{
 		temp->order = 0;
 		temp = temp->next;
+	}
+}
+
+void	update_indexes(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack *temp_a;
+	t_stack *temp_b;
+	int newindex;
+
+	temp_a = NULL;
+	temp_b = NULL;
+
+	if (*stack_a != NULL)
+		temp_a = *stack_a;
+	if (*stack_b != NULL)
+		temp_b = *stack_b;
+	newindex = 0;
+	while (temp_a != NULL)
+	{
+		temp_a->index = newindex;
+		temp_a = temp_a->next;
+		newindex++;
+	}
+	newindex = 0;
+	while (temp_b != NULL)
+	{
+		temp_b->index =  newindex;
+		temp_b = temp_b->next;
+		newindex++;
 	}
 }

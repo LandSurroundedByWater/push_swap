@@ -9,7 +9,7 @@ void	printnode(t_stack *node)
 	printf("Cost---> %d\n", node->cost);
 }
 
-void	ft_lstiter(t_stack *stack, void (*f)(t_stack *))
+void	ft_lstiter_ps(t_stack *stack, void (*f)(t_stack *))
 {
 	t_stack *temp;
 

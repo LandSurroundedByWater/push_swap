@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:46 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/19 11:19:02 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:03:42 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack	*ft_second_last_node(t_stack *stack)
 	return (stack);
 }
 
-void	ft_lstadd_front(t_stack **stack, t_stack *new)
+void	ft_lstadd_front_ps(t_stack **stack, t_stack *new)
 {
 	if (*stack == 0)
 	{
@@ -41,7 +41,7 @@ void	ft_lstadd_front(t_stack **stack, t_stack *new)
 	*stack = new;
 }
 
-int	ft_lstsize(t_stack *lst)
+int	ft_lstsize_ps(t_stack *lst)
 {
 	int	size;
 
@@ -54,7 +54,7 @@ int	ft_lstsize(t_stack *lst)
 	return (size);
 }
 
-t_stack	*ft_lstnew(int num, int index, int order)
+t_stack	*ft_lstnew_ps(int num, int index, int order)
 {
 	t_stack	*newnode;
 
@@ -70,7 +70,7 @@ t_stack	*ft_lstnew(int num, int index, int order)
 	newnode->cost = -1;
 	return (newnode);
 }
-void	ft_lstadd_back(t_stack **stack, t_stack *newnode)
+void	ft_lstadd_back_ps(t_stack **stack, t_stack *newnode)
 {
 	t_stack *temp;
 

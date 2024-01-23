@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:44:22 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/19 13:39:08 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/23 20:34:02 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	push_not_flagged(t_stack **stack_a, t_stack **stack_b)
 {
 	int x;
 
-	x =ft_lstsize(*stack_a);
+	x =ft_lstsize_ps(*stack_a);
 	while(x > 0)
 	{
 		if ((*stack_a)->flag != -1 && (*stack_a)->order > (x / 2))
@@ -25,7 +25,7 @@ void	push_not_flagged(t_stack **stack_a, t_stack **stack_b)
 			rotate_a(stack_a, stack_b);
 		x--;
 	}
-	x =ft_lstsize(*stack_a);
+	x =ft_lstsize_ps(*stack_a);
 	while(x > 0)
 	{
 		if ((*stack_a)->flag != -1)
@@ -58,8 +58,8 @@ void move_smallindex_nodes(t_stack **stack_a, t_stack **stack_b, t_stack *node_a
 
 void move_highindex_nodes(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_stack *node_b)
 {
-	int a = ft_lstsize(*stack_a);
-	int b = ft_lstsize(*stack_b);
+	int a = ft_lstsize_ps(*stack_a);
+	int b = ft_lstsize_ps(*stack_b);
 	if ((a - node_a->index) > (b - node_b->index))
 	{
 		while ((a - node_a->index) != (b - node_b->index))
@@ -79,7 +79,7 @@ void move_highindex_nodes(t_stack **stack_a, t_stack **stack_b, t_stack *node_a,
 }
 void move_index_low_and_high(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_stack *node_b)
 {
-	if (node_a->index < (ft_lstsize(*stack_a) / 2))
+	if (node_a->index < (ft_lstsize_ps(*stack_a) / 2))
 	{
 		while(node_a->index != 0)
 			rotate_a(stack_a, stack_b);
@@ -87,7 +87,7 @@ void move_index_low_and_high(t_stack **stack_a, t_stack **stack_b, t_stack *node
 	while(node_a->index != 0)
 		reverse_rotate_a(stack_a, stack_b);
 
-	if (node_b->index < (ft_lstsize(*stack_b) / 2))
+	if (node_b->index < (ft_lstsize_ps(*stack_b) / 2))
 	{
 		while(node_b->index != 0)
 			rotate_b(stack_a, stack_b);
@@ -101,9 +101,9 @@ void move_index_low_and_high(t_stack **stack_a, t_stack **stack_b, t_stack *node
 void push_back_node(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_stack *node_b)
 {
 	
-	if (node_a->index < (ft_lstsize(*stack_a) / 2) && node_b->index < (ft_lstsize(*stack_b) / 2))
+	if (node_a->index < (ft_lstsize_ps(*stack_a) / 2) && node_b->index < (ft_lstsize_ps(*stack_b) / 2))
 		move_smallindex_nodes(stack_a, stack_b, node_a, node_b);
-	else if (node_a->index > (ft_lstsize(*stack_a) / 2) && node_b->index > (ft_lstsize(*stack_b) / 2))
+	else if (node_a->index > (ft_lstsize_ps(*stack_a) / 2) && node_b->index > (ft_lstsize_ps(*stack_b) / 2))
 		move_highindex_nodes(stack_a, stack_b, node_a, node_b);
 	else
 		move_index_low_and_high(stack_a, stack_b, node_a, node_b);
@@ -137,8 +137,18 @@ void find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b)
 
 void sort_big (t_stack **stack_a, t_stack **stack_b)
 {
-	while (ft_lstsize(*stack_b) != 0)
+	t_stack *temp;
+	
+	while (ft_lstsize_ps(*stack_b) != 0)
 	{
 		find_cheapest_and_push(stack_a, stack_b);
+	}
+	temp = lowest(stack_a);
+	while (temp->index != 0)
+	{
+		if (temp->index < ft_lstsize_ps(*stack_a) / 2)
+			rotate_a(stack_a, stack_b);
+		else
+			reverse_rotate_a(stack_a, stack_b);
 	}
 }
