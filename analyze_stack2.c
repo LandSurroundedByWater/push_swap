@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:39 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:09:16 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/24 06:24:01 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	cost_to_top(t_stack **stack, t_stack *node)
 {
 	int cost;
 
-	if (!stack || !node)
-		ft_free(stack, NULL);
 	cost = 0;
 	if (node->index > (ft_lstsize_ps(*stack) / 2))
 		cost = ft_lstsize_ps(*stack) - node->index + 1;
@@ -30,8 +28,6 @@ void count_costs_to_top(t_stack **stack_a, t_stack **stack_b)
 {
 		t_stack *temp;
 
-		if (!stack_a  || !stack_b)
-			ft_free(stack_a, stack_b);
 		temp = *stack_b;
 		while (temp != NULL)
 		{
@@ -52,11 +48,7 @@ t_stack	*lowest_order(t_stack **stack)
 	t_stack *lowestnode = NULL;
 	int		lowest;
 
-	if (!stack)
-		ft_free(stack, NULL);
 	lowest = INT_MAX;
-	if (!stack)
-		exit (1);
 	temp = *stack;
 	while (temp != 0)
 	{

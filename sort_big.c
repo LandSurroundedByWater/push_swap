@@ -6,18 +6,32 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:44:22 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:34:02 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/24 06:44:13 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int check_if_pushed(t_stack *stack)
+{
+	t_stack *temp;
+
+	temp = stack;
+	while(temp)
+	{
+		if(temp->flag != -1)
+			return (-1);
+		temp = temp->next;
+	}
+	return (0);
+}
 
 void	push_not_flagged(t_stack **stack_a, t_stack **stack_b)
 {
 	int x;
 
 	x =ft_lstsize_ps(*stack_a);
-	while(x > 0)
+	while(x > 0 && check_if_pushed(*stack_a) == -1)
 	{
 		if ((*stack_a)->flag != -1 && (*stack_a)->order > (x / 2))
 			push_a_to_b(stack_a, stack_b);
@@ -26,7 +40,7 @@ void	push_not_flagged(t_stack **stack_a, t_stack **stack_b)
 		x--;
 	}
 	x =ft_lstsize_ps(*stack_a);
-	while(x > 0)
+	while(x > 0 && check_if_pushed(*stack_a) == -1)
 	{
 		if ((*stack_a)->flag != -1)
 			push_a_to_b(stack_a, stack_b);
@@ -108,6 +122,7 @@ void push_back_node(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_sta
 	else
 		move_index_low_and_high(stack_a, stack_b, node_a, node_b);
 }
+
 void find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *temp;

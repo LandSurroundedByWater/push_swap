@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:56 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:50:28 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/24 06:44:54 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	flag_increasing(t_stack *stack)
 	int max;
 	int div;
 
-	if (!stack)
-		ft_free(&stack, NULL);
 	div = 1;
 	max = 1;
 	while (div * div <= ft_lstsize_ps(stack))
@@ -59,13 +57,12 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
     int i;
 	int index;
 	int order;
-	t_stack new;
+	t_stack *new;
 
 	index = 0;
     i = 1;
     while (i < argc)
     {
-		printf("before %s", argv[i]);
 		long num;
         num = ft_atoi(argv[i]);
 		order = -1;
@@ -73,10 +70,7 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
 			exit (1);
 		new = ft_lstnew_ps(num, index, order);
 		if (!new)
-			{
-				free(new);
-				ft_free(stack_a, NULL);
-			}
+			exit(1);
         ft_lstadd_back_ps(stack_a, new);
 		index++;
 		i++;
@@ -87,19 +81,31 @@ int main(int argc, char **argv)
 {
 	
 	t_stack *stack_a;
-	//t_stack *stack_b;
+	t_stack *stack_b;
 
 
-	
-	//stack_b = stacks.stack_b;
+	stack_a = NULL;
+	stack_b = NULL;
 	parse_stack_a(argv, argc, &stack_a);
 
+	
+	set_order(&stack_a);
+	flag_increasing(stack_a);
+	
+	push_not_flagged(&stack_a, &stack_b);
+	
 	ft_lstiter_ps(stack_a, &printnode);
-	//set_order(&stack_a);
-	//flag_increasing(stack_a);
-	//push_not_flagged(&stack_a, &stack_b);
-	//reset_costs(&stack_a, &stack_b);
-	//sort_big(&stack_a, &stack_b);
+	printf("\n");
+	ft_lstiter_ps(stack_b, &printnode);
+	
+	reset_costs(&stack_a, &stack_b);
+
+	
+	sort_big(&stack_a, &stack_b);
+	
+	
+	
+	
 	//sort_five(&stack_a, &stack_b);
 
 	
