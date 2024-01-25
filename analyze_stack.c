@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:09:21 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/24 06:43:50 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/25 08:35:37 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stac
 
 	stsize_a = ft_lstsize_ps(stack_a);
 	stsize_b = ft_lstsize_ps(stack_b);
-	if (node_a->index < (stsize_a / 2) || node_b->index < (stsize_b / 2))
+	if (node_a->index < (stsize_a / 2) && node_b->index < (stsize_b / 2))
 	{
 		if (node_a->order > node_b->order)
 			count = node_a->order;
@@ -85,5 +85,5 @@ void reset_costs(t_stack **stack_a, t_stack **stack_b)
 		node_b->cost = cost;
 		node_b = node_b->next;
 	}
-	
+
 }

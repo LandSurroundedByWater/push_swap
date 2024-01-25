@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:06:31 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:08:44 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/24 14:06:51 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,28 @@
 
 void push_a_to_b(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *tmp;
+	t_stack *temp;
 	t_stack *new;
 
-	if (*stack_a == NULL)
-		return;
-	tmp = *stack_a;
-	new = ft_lstnew_ps((*stack_a)->num, (*stack_a)->index, (*stack_a)->order);
-	if (!new)
-		exit(1);
+	temp = *stack_a;
+	new = ft_lstnew_ps(temp->num, temp->index, temp->order);
 	ft_lstadd_front_ps(stack_b, new);
 	*stack_a = (*stack_a)->next;
-	free(tmp);
+	free(temp);
 	update_indexes(stack_a, stack_b);
 	write(1, "pb\n", 3);
 }
 
 void	push_b_to_a(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *tmp;
+	t_stack *temp;
 	t_stack *new;
 
-	if (!stack_b)
-		return;
-	tmp = *stack_b;
-	new = ft_lstnew_ps((*stack_b)->num, (*stack_b)->index, (*stack_b)->order);
-	if (!new)
-		exit(1);
+	temp = *stack_b;
+	new = ft_lstnew_ps(temp->num, temp->index, temp->order);
 	ft_lstadd_front_ps(stack_a, new);
 	*stack_b = (*stack_b)->next;
-	free(tmp);
+	free(temp);
 	update_indexes(stack_a, stack_b);
 	write(1, "pa\n", 3);
-
 }

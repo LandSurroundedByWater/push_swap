@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:46 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:03:42 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/25 08:14:02 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 t_stack	*ft_last_node(t_stack *stack)
 {
-	if (stack == 0)
-		return (0);
 	while (stack->next != 0)
 		stack = stack->next;
 	return (stack);
@@ -23,8 +21,6 @@ t_stack	*ft_last_node(t_stack *stack)
 
 t_stack	*ft_second_last_node(t_stack *stack)
 {
-	if (stack == 0)
-		return (0);
 	while (stack->next->next != 0)
 		stack = stack->next;
 	return (stack);
@@ -41,15 +37,17 @@ void	ft_lstadd_front_ps(t_stack **stack, t_stack *new)
 	*stack = new;
 }
 
-int	ft_lstsize_ps(t_stack *lst)
+int	ft_lstsize_ps(t_stack *stack)
 {
 	int	size;
+	t_stack *temp;
 
+	temp = stack;
 	size = 0;
-	while (lst != 0)
+	while (temp != 0)
 	{
 		size++;
-		lst = lst->next;
+		temp = temp->next;
 	}
 	return (size);
 }

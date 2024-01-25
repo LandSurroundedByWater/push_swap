@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:06:21 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:28:14 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/24 08:53:04 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	rotate_bottom_to_top(t_stack **stack)
 {
-    if (*stack == NULL)
-        return ;
-
     t_stack *tmp1 = ft_last_node(*stack);
     t_stack *tmp2 = ft_second_last_node(*stack);
     ft_lstadd_front_ps(stack, tmp1);
@@ -27,8 +24,6 @@ void	rotate_top_to_bottom(t_stack **stack)
 {
 	t_stack *temp;
 
-    if (*stack == NULL)
-        return ;
 	temp = *stack;
 	(*stack) = (*stack)->next;
     ft_lstadd_back_ps(stack, temp);
@@ -54,4 +49,3 @@ void rotate_both(t_stack **stack_a, t_stack **stack_b)
 	update_indexes(stack_a, stack_b);
 	write(1, "rr\n", 4);
 }
-

@@ -6,11 +6,17 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:58:55 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:07:17 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/24 12:41:25 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_error()
+{
+	ft_putendl_fd("Error", 1);
+	exit(1);
+}
 
 void	ft_lstdelone_ps(t_stack *lst, void (*del)(void *))
 {
@@ -36,17 +42,18 @@ void	ft_lstclear_ps(t_stack **lst, void (*del)(void *))
 	*lst = 0;
 }
 
-void	*ft_free(t_stack **ptr, t_stack **ptr2)
+void	ft_free(t_stack **stack)
 {
-	if (ptr != NULL && *ptr != NULL)
+	t_stack	*head;
+	t_stack	*tmp;
+
+	head = *stack;
+	while (head)
 	{
-		ft_lstclear_ps(ptr, &free);
-		exit(1);
+		tmp = head;
+		head = head->next;
+
+		free(tmp);
 	}
-	if (ptr2 != NULL && *ptr2 != NULL)
-	{
-		ft_lstclear_ps(ptr2, &free);
-		exit (1);
-	}
-	exit (1);
+	free(stack);
 }

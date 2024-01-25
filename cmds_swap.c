@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:06:15 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/19 11:06:16 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/24 08:54:35 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int swap(t_stack **stack)
 {
-    if (*stack == NULL || (*stack)->next == NULL)
-        return (0);
-
     t_stack *tmp1 = *stack;
     t_stack *tmp2 = (*stack)->next;
 

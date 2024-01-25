@@ -6,13 +6,29 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:07:02 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/24 06:22:30 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/25 08:33:52 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int check_dublicates(t_stack *stack_a, t_stack *new)
+{
+	t_stack *temp;
 
+	while(stack_a != NULL)
+	{
+		temp = stack_a;
+		while(temp != NULL)
+		{
+			if(temp->num == new->num)
+				return (0);
+			temp = temp->next;
+		}
+		stack_a = stack_a->next;
+	}
+	return (1);
+}
 
 t_stack *lowest(t_stack **stack)
 {
@@ -21,7 +37,7 @@ t_stack *lowest(t_stack **stack)
 	int		lowest;
 
 	lnode = NULL;
-	lowest = (*stack)->num;
+	lowest = INT_MAX;
 	temp = *stack;
 	while (temp != NULL)
 	{
@@ -74,13 +90,8 @@ void	update_indexes(t_stack **stack_a, t_stack **stack_b)
 	t_stack *temp_b;
 	int newindex;
 
-	temp_a = NULL;
-	temp_b = NULL;
-
-	if (*stack_a != NULL)
-		temp_a = *stack_a;
-	if (*stack_b != NULL)
-		temp_b = *stack_b;
+	temp_a = *stack_a;
+	temp_b = *stack_b;
 	newindex = 0;
 	while (temp_a != NULL)
 	{

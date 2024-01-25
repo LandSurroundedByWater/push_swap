@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:10:47 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:01:44 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/25 09:37:09 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	converttoint(const char *str, int i, int neg)
 	return (ret);
 }
 
-int	ft_atoi(const char *str)
+int ft_atoi(const char *str)
 {
-	int		i;
+	int	i;
 	int		neg;
 
 	neg = 1;
@@ -45,6 +45,8 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	else if (!(str[i] >= 48 && str[i] <= 57))
+	{
 		return (0);
+	}
 	return (neg * converttoint(str, i, neg));
 }
