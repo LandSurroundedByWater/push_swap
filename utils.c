@@ -6,25 +6,13 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:46 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/25 08:14:02 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 14:25:53 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_last_node(t_stack *stack)
-{
-	while (stack->next != 0)
-		stack = stack->next;
-	return (stack);
-}
 
-t_stack	*ft_second_last_node(t_stack *stack)
-{
-	while (stack->next->next != 0)
-		stack = stack->next;
-	return (stack);
-}
 
 void	ft_lstadd_front_ps(t_stack **stack, t_stack *new)
 {

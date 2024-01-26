@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:51:06 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/23 20:02:23 by tsaari           ###   ########.fr       */
+/*   Updated: 2023/11/08 09:18:37 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	**ft_free(char **s)
 	i = 0;
 	if (!s)
 		return (0);
-	while (s[i] != NULL)
+	while (s[i] != '\0')
 	{
 		free (s[i]);
 		i++;

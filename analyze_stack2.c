@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:39 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 10:50:13 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 14:32:57 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	cost_to_top(t_stack **stack, t_stack *node)
 	node->order = cost;
 }
 
-void count_costs_to_top(t_stack **stack_a, t_stack **stack_b)
+void	count_costs_to_top(t_stack **stack_a, t_stack **stack_b)
 {
 		t_stack *temp;
 
@@ -62,7 +62,7 @@ t_stack	*lowest_order(t_stack **stack)
 	return (lowestnode);
 }
 
-void set_order(t_stack **stack)
+void	set_order(t_stack **stack)
 {
 	int order;
 

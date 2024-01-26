@@ -6,13 +6,13 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:06:15 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/24 08:54:35 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 14:31:23 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int swap(t_stack **stack)
+int	swap(t_stack **stack)
 {
     t_stack *tmp1 = *stack;
     t_stack *tmp2 = (*stack)->next;

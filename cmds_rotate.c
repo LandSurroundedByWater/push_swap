@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:06:21 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 07:57:45 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 14:31:44 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ void	rotate_top_to_bottom(t_stack **stack)
 	(*stack) = (*stack)->next;
     ft_lstadd_back_ps(stack, temp);
 }
-void rotate_a(t_stack **stack_a, t_stack **stack_b)
+void	rotate_a(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate_top_to_bottom(stack_a);
 	update_indexes(stack_a, stack_b);
 	write(1, "ra\n", 3);
 }
 
-void rotate_b(t_stack **stack_a, t_stack **stack_b)
+void	rotate_b(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate_top_to_bottom(stack_b);
 	update_indexes(stack_a, stack_b);
 	write(1, "rb\n", 3);
 }
 
-void rotate_both(t_stack **stack_a, t_stack **stack_b)
+void	rotate_both(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate_top_to_bottom(stack_a);
 	rotate_top_to_bottom(stack_b);

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 10:39:04 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 14:07:29 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ void	reset_costs(t_stack **stack_a, t_stack **stack_b);
 int		count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stack *node_b);
 void	find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b);
 void	flag_increasing(t_stack *stack);
-
-void	ft_error();
-void	ft_free(t_stack **stack);
-int		check_dublicates(t_stack *stack_a, t_stack *new);
+void	check_dublicates(t_stack *stack_a, t_stack *new);
+long	ft_atol(const char *str);
 void	check_isdigit(char *str);
+void	ft_free(t_stack **stack);
+void	ft_error();
+
+
 t_stack	*ft_lstnew_ps(int num, int index, int order);
 int		ft_lstsize_ps(t_stack *stack);
 void	ft_lstadd_front_ps(t_stack **stack, t_stack *new);
@@ -60,7 +62,6 @@ t_stack	*ft_second_last_node(t_stack *stack);
 t_stack	*lowest(t_stack **stack);
 t_stack	*lowest_order(t_stack **stack);
 t_stack	*find_nearest_bigger(t_stack **stack, int num);
-long ft_atol(const char *str);
 
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
 void	push_b_to_a(t_stack **stack_b, t_stack **stack_a);

@@ -6,13 +6,13 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:06:52 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 11:45:43 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 14:25:05 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-int find_index(t_stack *stack, int targetNum)
+int	find_index(t_stack *stack, int targetNum)
 {
     while (stack != NULL)
     {
@@ -25,9 +25,7 @@ int find_index(t_stack *stack, int targetNum)
     return -1;
 }
 
-
-
-int is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
     while (stack != NULL && stack->next != NULL)
     {
@@ -38,9 +36,7 @@ int is_sorted(t_stack *stack)
     return 1;
 }
 
-
-
-void sort_three(t_stack **stack_a,t_stack **stack_b)
+void	sort_three(t_stack **stack_a,t_stack **stack_b)
 {
 	int biggest;
 
@@ -54,7 +50,7 @@ void sort_three(t_stack **stack_a,t_stack **stack_b)
 	if ((*stack_a)->next->num < (*stack_a)->num)
 		swap_a(stack_a, stack_b);
 }
-void sort_five(t_stack **stack_a, t_stack **stack_b)
+void	sort_five(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *temp;
 
@@ -62,9 +58,7 @@ void sort_five(t_stack **stack_a, t_stack **stack_b)
 	push_a_to_b(stack_a, stack_b);
 	sort_three(stack_a, stack_b);
 	while (ft_lstsize_ps(*stack_b) != 0)
-	{
 		find_cheapest_and_push(stack_a, stack_b);
-	}
 	temp = lowest(stack_a);
 	while (temp->index != 0)
 	{
@@ -75,7 +69,7 @@ void sort_five(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void sort_small(t_stack **stack_a, t_stack **stack_b)
+void	sort_small(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *temp;
 

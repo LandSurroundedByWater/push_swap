@@ -6,13 +6,13 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:09:21 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 12:14:30 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 14:32:36 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-t_stack *find_nearest_bigger(t_stack **stack, int num)
+t_stack	*find_nearest_bigger(t_stack **stack, int num)
 {
     t_stack *temp;
     t_stack *nb_node;
@@ -38,10 +38,7 @@ t_stack *find_nearest_bigger(t_stack **stack, int num)
     return (nb_node);
 }
 
-
-
-
-int count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stack *node_b)
+int	count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stack *node_b)
 {
 	int stsize_a;
 	int stsize_b;
@@ -68,7 +65,7 @@ int count_total_cost(t_stack *stack_a, t_stack *stack_b, t_stack *node_a, t_stac
 	return count;
 }
 
-void reset_costs(t_stack **stack_a, t_stack **stack_b)
+void	reset_costs(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *node_a;
 	t_stack *node_b;
@@ -86,4 +83,38 @@ void reset_costs(t_stack **stack_a, t_stack **stack_b)
 		node_b = node_b->next;
 	}
 
+}
+
+void	flag_increasing(t_stack *stack)
+{
+	t_stack *temp;
+	int max;
+	int div;
+
+	div = 1;
+	max = 1;
+	while (div * div <= ft_lstsize_ps(stack))
+		div++;
+	temp = stack;
+	while (temp->order != 1)
+		temp = temp->next;
+	while (temp != NULL)
+	{
+		if (temp->order >= max && temp->order <= max + (ft_lstsize_ps(stack) / (ft_lstsize_ps(stack) / (div + ft_lstsize_ps(stack) / 50))))
+		{
+			max = temp->order;
+			temp->flag = -1;
+		}
+		temp = temp->next;
+	}
+	temp = stack;
+	while (temp->flag != -1)
+	{
+		if (temp->order >= max && temp->order <= max + (ft_lstsize_ps(stack) / (ft_lstsize_ps(stack) / (div + ft_lstsize_ps(stack) / 50))))
+		{
+			max = temp->order;
+			temp->flag = -1;
+		}
+		temp = temp->next;
+	}
 }
