@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:39 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/24 06:24:01 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 10:50:13 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_stack	*lowest_order(t_stack **stack)
 	temp = *stack;
 	while (temp != 0)
 	{
-		if (temp->order == -1 && temp->num < lowest)
+		if (temp->order == -1 && temp->num <= lowest)
 		{
 			lowest = temp->num;
 			lowestnode = temp;

@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:06:21 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/24 08:53:04 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 07:57:45 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void rotate_both(t_stack **stack_a, t_stack **stack_b)
 	rotate_top_to_bottom(stack_a);
 	rotate_top_to_bottom(stack_b);
 	update_indexes(stack_a, stack_b);
-	write(1, "rr\n", 4);
+	write(1, "rr\n", 3);
 }

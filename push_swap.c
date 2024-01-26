@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:56 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/25 13:49:50 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 12:24:32 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ void	check_isdigit(char *str)
 	i = 0;
 	if (str[0] == '-')
 		i++;
-	if (!str[i])
+	if (str[i] == 0)
 		ft_error();
 	while (str[i])
-		if (!ft_isdigit(str[i++]))
+	{
+		if (str[i] < '0' || str[i] > '9')
 			ft_error();
-}
-
-void initializeStacks(stacks *stacks)
-{
-    stacks->stack_a = NULL;
-    stacks->stack_b = NULL;
+		i++;
+	}
 }
 
 void	flag_increasing(t_stack *stack)
@@ -47,7 +44,7 @@ void	flag_increasing(t_stack *stack)
 		temp = temp->next;
 	while (temp != NULL)
 	{
-		if (temp->order >= max && temp->order <= max + (ft_lstsize_ps(stack) / div + ft_lstsize_ps(stack)))
+		if (temp->order >= max && temp->order <= max + (ft_lstsize_ps(stack) / (ft_lstsize_ps(stack) / (div + ft_lstsize_ps(stack) / 50))))
 		{
 			max = temp->order;
 			temp->flag = -1;
@@ -57,7 +54,7 @@ void	flag_increasing(t_stack *stack)
 	temp = stack;
 	while (temp->flag != -1)
 	{
-		if (temp->order >= max && temp->order <= max + (ft_lstsize_ps(stack) / div + ft_lstsize_ps(stack)))
+		if (temp->order >= max && temp->order <= max + (ft_lstsize_ps(stack) / (ft_lstsize_ps(stack) / (div + ft_lstsize_ps(stack) / 50))))
 		{
 			max = temp->order;
 			temp->flag = -1;
@@ -79,12 +76,22 @@ void	parse_one_str(t_stack **stack_a, char **buff)
 	while (buff[i] != 0)
 	{
 		long num;
-		num = ft_atoi(buff[i]);
+		num = ft_atol(buff[i]);
 		if (num > 2147483647 || num < -2147483648)
+		{
+			if (stack_a != NULL)
+				ft_free(stack_a);
 			ft_error();
+		}
 		new = ft_lstnew_ps(num, index, order);
-		if (!new || check_dublicates(*stack_a, new) == 0)
+		if (!new)
+			ft_free(stack_a);
+		if (check_dublicates(*stack_a, new) == 0)
+		{
+			if (stack_a != NULL)
+				ft_free(stack_a);
 			ft_error();
+		}
 		ft_lstadd_back_ps(stack_a, new);
 		index++;
 		i++;
@@ -99,21 +106,30 @@ void parse_argv(t_stack **stack_a,int argc, char **argv)
 	int order;
 	t_stack *new;
 
+
 	i = 1;
 	index = 0;
 	order = -1;
-	while(argv[++i] != 0)
-		check_isdigit(argv[i]);
 	i = 1;
 	while (i < argc)
 	{
 		long num;
-		num = ft_atoi(argv[i]);
+		num = ft_atol(argv[i]);
 		if (num > 2147483647 || num < -2147483648)
+		{
+			if (stack_a != NULL)
+				ft_free(stack_a);
 			ft_error();
+		}
 		new = ft_lstnew_ps(num, index, order);
-		if (!new || check_dublicates(*stack_a, new) == 0)
+		if (!new)
+			ft_free(stack_a);
+		if (check_dublicates(*stack_a, new) == 0)
+		{
+			if (stack_a != NULL)
+				ft_free(stack_a);
 			ft_error();
+		}
 		ft_lstadd_back_ps(stack_a, new);
 		index++;
 		i++;
@@ -128,17 +144,24 @@ void parse_stack_a(char **argv, int argc, t_stack **stack_a)
     i = 0;
 	if (argc == 2)
 	{
-		while(argv[1][i] != 0)
-			i++;
 		buff = ft_split(argv[1], ' ');
-		i = 0;
-		while(buff[++i] != 0)
+		while(buff[i] != 0)
+		{
 			check_isdigit(buff[i]);
+			i++;
+		}
 		parse_one_str(stack_a, buff);
 	}
 	else
+	{
+		i = 1;
+		while(argv[i] != 0)
+		{
+			check_isdigit(argv[i]);
+			i++;
+		}
 		parse_argv(stack_a, argc, argv);
-
+	}
 }
 
 int main(int argc, char **argv)
@@ -147,12 +170,11 @@ int main(int argc, char **argv)
 	t_stack *stack_b;
 	stack_a = NULL;
 	stack_b = NULL;
+
 	parse_stack_a(argv, argc, &stack_a);
 	if (is_sorted(stack_a) == 1)
 		exit(1);
 	set_order(&stack_a);
-	flag_increasing(stack_a);
-	ft_lstiter_ps(stack_a, &printnode);
 	if (ft_lstsize_ps(stack_a) <= 3)
 		sort_three(&stack_a, &stack_b);
 	else if (ft_lstsize_ps(stack_a) <= 5)

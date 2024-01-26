@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:09:21 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/25 08:35:37 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 12:14:30 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_stack *find_nearest_bigger(t_stack **stack, int num)
     {
         if (temp->num > num)
         {
-            if (temp->num < nearest_bigger)
+            if (temp->num <= nearest_bigger)
             {
                 nearest_bigger = temp->num;
                 nb_node = temp;

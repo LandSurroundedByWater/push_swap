@@ -5,12 +5,14 @@
 	"version": "0.2.0",
 	"configurations": [
 
+
+
 		{
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceFolder}/push_swap",
-			"args": ["2", "1", "3", "4",  "5", "8", "11", "22"],
+			"args": ["0", "9487", "-2147483648", "-2147483647", "2147483647"],
 			"cwd": "${workspaceFolder}"
 		}
 	]

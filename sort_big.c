@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:44:22 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/25 13:53:48 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:12:55 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	push_not_flagged(t_stack **stack_a, t_stack **stack_b)
 		x--;
 	}
 	x =ft_lstsize_ps(*stack_a);
-	while(x > 0 && check_if_pushed(*stack_a) == -1)
+	while(x > 0 && check_if_pushable(*stack_a) == -1)
 	{
 		if ((*stack_a)->flag != -1)
 			push_a_to_b(stack_a, stack_b);
@@ -151,8 +151,9 @@ void sort_big (t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *temp;
 
-	push_not_flagged(&stack_a, &stack_b);
-	reset_costs(&stack_a, &stack_b);
+	flag_increasing(*stack_a);
+	push_not_flagged(stack_a, stack_b);
+	reset_costs(stack_a, stack_b);
 	while (ft_lstsize_ps(*stack_b) != 0)
 		find_cheapest_and_push(stack_a, stack_b);
 	temp = lowest(stack_a);
