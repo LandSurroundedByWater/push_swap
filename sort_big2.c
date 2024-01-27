@@ -6,12 +6,11 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:21:27 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/27 07:57:12 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/27 11:07:24 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 int	check_if_pushable(t_stack *stack)
 {
 	t_stack	*temp;
@@ -26,6 +25,7 @@ int	check_if_pushable(t_stack *stack)
 	return (0);
 }
 
+
 void	push_not_flagged(t_stack **stack_a, t_stack **stack_b)
 {
 	int	x;
@@ -33,7 +33,7 @@ void	push_not_flagged(t_stack **stack_a, t_stack **stack_b)
 	x = ft_lstsize_ps(*stack_a);
 	while (x > 0 && check_if_pushable(*stack_a) == -1)
 	{
-		if ((*stack_a)->flag != -1 && (*stack_a)->order > (x / 2))
+		if ((*stack_a)->flag != -1 && (*stack_a)->order < (x / 2))
 			push_a_to_b(stack_a, stack_b);
 		else
 			rotate_a(stack_a, stack_b);

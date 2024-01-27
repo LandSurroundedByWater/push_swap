@@ -6,13 +6,13 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:44:22 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 15:45:52 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/27 09:45:08 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_b_nd(t_stack **st_a, t_stack **st_b, t_stack *n_a, t_stack *n_b)
+void	push_back(t_stack **st_a, t_stack **st_b, t_stack *n_a, t_stack *n_b)
 {
 	if (n_a->index <= (ft_lstsize_ps(*st_a) / 2) \
 	&& n_b->index <= (ft_lstsize_ps(*st_b) / 2))
@@ -45,7 +45,7 @@ void	find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b)
 		}
 		temp = temp->next;
 	}
-	push_b_nd(stack_a, stack_b, node_a, node_b);
+	push_back(stack_a, stack_b, node_a, node_b);
 }
 
 void	sort_big(t_stack **stack_a, t_stack **stack_b)

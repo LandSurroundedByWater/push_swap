@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 07:45:23 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/27 09:24:44 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/27 11:18:26 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
+	if (argv[1] == NULL || argv[1][0] == '\0')
+		ft_error();
 	parse_stack_a(argv, argc, &stack_a);
 	if (is_sorted(stack_a) == 1)
 		exit(1);
@@ -129,7 +131,7 @@ int	main(int argc, char **argv)
 		sort_three(&stack_a, &stack_b);
 	else if (ft_lstsize_ps(stack_a) <= 5)
 		sort_five(&stack_a, &stack_b);
-	else if (ft_lstsize_ps(stack_a) <= 15)
+	else if (ft_lstsize_ps(stack_a) <= 25)
 		sort_small(&stack_a, &stack_b);
 	else
 		sort_big(&stack_a, &stack_b);

@@ -5,8 +5,8 @@ void	printnode(t_stack *node)
 {
 	printf("Number---> %d\n", node->num);
 //	printf("Index---> %d\n", node->index);
-	printf("Order---> %d\n", node->order);
-	printf("Flag---> %d\n", node->flag);
+//	printf("Order---> %d\n", node->order);
+//	printf("Flag---> %d\n", node->flag);
 	printf("Cost---> %d\n", node->cost);
 }
 
