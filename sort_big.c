@@ -6,29 +6,30 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:44:22 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 14:22:58 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 15:45:52 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_back_node(t_stack **stack_a, t_stack **stack_b, t_stack *node_a, t_stack *node_b)
+void	push_b_nd(t_stack **st_a, t_stack **st_b, t_stack *n_a, t_stack *n_b)
 {
-
-	if (node_a->index <= (ft_lstsize_ps(*stack_a) / 2) && node_b->index <= (ft_lstsize_ps(*stack_b) / 2))
-		move_smallindex_nodes(stack_a, stack_b, node_a, node_b);
-	else if (node_a->index > (ft_lstsize_ps(*stack_a) / 2) && node_b->index > (ft_lstsize_ps(*stack_b) / 2))
-		move_highindex_nodes(stack_a, stack_b, node_a, node_b);
+	if (n_a->index <= (ft_lstsize_ps(*st_a) / 2) \
+	&& n_b->index <= (ft_lstsize_ps(*st_b) / 2))
+		mv_sm_nds(st_a, st_b, n_a, n_b);
+	else if (n_a->index > (ft_lstsize_ps(*st_a) / 2) \
+	&& n_b->index > (ft_lstsize_ps(*st_b) / 2))
+		mv_high_nds(st_a, st_b, n_a, n_b);
 	else
-		move_index_low_and_high(stack_a, stack_b, node_a, node_b);
+		mv_l_and_h(st_a, st_b, n_a, n_b);
 }
 
 void	find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp;
+	t_stack	*temp;
 	t_stack	*node_a;
-	t_stack *node_b;
-	int cheapest;
+	t_stack	*node_b;
+	int		cheapest;
 
 	node_b = *stack_b;
 	cheapest = INT_MAX;
@@ -44,12 +45,12 @@ void	find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b)
 		}
 		temp = temp->next;
 	}
-	push_back_node(stack_a, stack_b, node_a, node_b);
+	push_b_nd(stack_a, stack_b, node_a, node_b);
 }
 
-void	sort_big (t_stack **stack_a, t_stack **stack_b)
+void	sort_big(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	flag_increasing(*stack_a);
 	push_not_flagged(stack_a, stack_b);

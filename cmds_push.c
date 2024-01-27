@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:06:31 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 14:31:49 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 15:15:30 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp;
-	t_stack *new;
+	t_stack	*temp;
+	t_stack	*new;
 
 	temp = *stack_a;
 	new = ft_lstnew_ps(temp->num, temp->index, temp->order);
@@ -27,7 +27,7 @@ void	push_a_to_b(t_stack **stack_a, t_stack **stack_b)
 	}
 	ft_lstadd_front_ps(stack_b, new);
 	*stack_a = (*stack_a)->next;
-	if ((temp != NULL))
+	if (temp != NULL)
 		free(temp);
 	update_indexes(stack_a, stack_b);
 	write(1, "pb\n", 3);
@@ -35,8 +35,8 @@ void	push_a_to_b(t_stack **stack_a, t_stack **stack_b)
 
 void	push_b_to_a(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp;
-	t_stack *new;
+	t_stack	*temp;
+	t_stack	*new;
 
 	temp = *stack_b;
 	new = ft_lstnew_ps(temp->num, temp->index, temp->order);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 11:05:39 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 14:32:57 by tsaari           ###   ########.fr       */
+/*   Created: 2024/01/26 15:53:53 by tsaari            #+#    #+#             */
+/*   Updated: 2024/01/26 15:54:52 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cost_to_top(t_stack **stack, t_stack *node)
 {
-	int cost;
+	int	cost;
 
 	cost = 0;
 	if (node->index > (ft_lstsize_ps(*stack) / 2))
@@ -26,28 +26,29 @@ void	cost_to_top(t_stack **stack, t_stack *node)
 
 void	count_costs_to_top(t_stack **stack_a, t_stack **stack_b)
 {
-		t_stack *temp;
+	t_stack	*temp;
 
-		temp = *stack_b;
-		while (temp != NULL)
-		{
-			cost_to_top(stack_b, temp);
-			temp = temp->next;
-		}
-		temp = *stack_a;
-		while (temp != NULL)
-		{
-			cost_to_top(stack_a, temp);
-			temp = temp->next;
-		}
+	temp = *stack_b;
+	while (temp != NULL)
+	{
+		cost_to_top(stack_b, temp);
+		temp = temp->next;
+	}
+	temp = *stack_a;
+	while (temp != NULL)
+	{
+		cost_to_top(stack_a, temp);
+		temp = temp->next;
+	}
 }
 
 t_stack	*lowest_order(t_stack **stack)
 {
-	t_stack *temp;
-	t_stack *lowestnode = NULL;
+	t_stack	*temp;
+	t_stack	*lowestnode;
 	int		lowest;
 
+	lowestnode = NULL;
 	lowest = INT_MAX;
 	temp = *stack;
 	while (temp != 0)
@@ -64,10 +65,10 @@ t_stack	*lowest_order(t_stack **stack)
 
 void	set_order(t_stack **stack)
 {
-	int order;
+	int	order;
 
 	order = 1;
-	while(order <= ft_lstsize_ps(*stack))
+	while (order <= ft_lstsize_ps(*stack))
 	{
 		lowest_order(stack)->order = order;
 		order++;

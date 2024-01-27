@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:30:46 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 14:30:59 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 15:23:31 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ t_stack	*ft_second_last_node(t_stack *stack)
 
 void	check_dublicates(t_stack *stack_a, t_stack *new)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
-	while(stack_a != NULL)
+	while (stack_a != NULL)
 	{
 		temp = stack_a;
-		while(temp != NULL)
+		while (temp != NULL)
 		{
-			if(temp->num == new->num)
+			if (temp->num == new->num)
 			{
 				ft_free(&stack_a);
 				ft_error();
@@ -48,8 +48,8 @@ void	check_dublicates(t_stack *stack_a, t_stack *new)
 
 t_stack	*lowest(t_stack **stack)
 {
-	t_stack *temp;
-	t_stack *lnode;
+	t_stack	*temp;
+	t_stack	*lnode;
 	int		lowest;
 
 	lnode = NULL;
@@ -69,19 +69,19 @@ t_stack	*lowest(t_stack **stack)
 
 int	is_biggest(t_stack **stack)
 {
-	t_stack *temp;
+	t_stack	*temp;
 	int		biggest;
 	int		index;
 
 	biggest = (*stack)->num;
-	index	= (*stack)->index;
+	index = (*stack)->index;
 	temp = *stack;
 	while (temp != NULL)
 	{
 		if (temp->num > biggest)
 		{
 			biggest = temp->num;
-			index	= temp->index;
+			index = temp->index;
 		}
 		temp = temp->next;
 	}

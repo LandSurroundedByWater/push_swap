@@ -19,6 +19,7 @@ SRCS		= push_swap.c \
 			sort_big2.c \
 			utils.c \
 			utils2.c \
+			utils3.c \
 			ft_free.c \
 			extras.c \
 

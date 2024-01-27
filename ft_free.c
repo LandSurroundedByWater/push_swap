@@ -6,13 +6,13 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:58:55 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 12:51:58 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 15:52:58 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error()
+void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);

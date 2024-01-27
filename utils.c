@@ -6,13 +6,11 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:05:46 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 14:25:53 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/26 15:27:18 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
 
 void	ft_lstadd_front_ps(t_stack **stack, t_stack *new)
 {
@@ -27,8 +25,8 @@ void	ft_lstadd_front_ps(t_stack **stack, t_stack *new)
 
 int	ft_lstsize_ps(t_stack *stack)
 {
-	int	size;
-	t_stack *temp;
+	int		size;
+	t_stack	*temp;
 
 	temp = stack;
 	size = 0;
@@ -47,7 +45,6 @@ t_stack	*ft_lstnew_ps(int num, int index, int order)
 	newnode = (t_stack *)malloc(sizeof(*newnode));
 	if (!newnode)
 		return (NULL);
-
 	newnode->num = num;
 	newnode->index = index;
 	newnode->order = order;
@@ -56,18 +53,19 @@ t_stack	*ft_lstnew_ps(int num, int index, int order)
 	newnode->cost = -1;
 	return (newnode);
 }
+
 void	ft_lstadd_back_ps(t_stack **stack, t_stack *newnode)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	temp = *stack;
-    if (*stack == NULL)
-        *stack = newnode;
-    else
-    {
-        while (temp->next != NULL)
-            temp = temp->next;
-        temp->next = newnode;
+	if (*stack == NULL)
+		*stack = newnode;
+	else
+	{
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = newnode;
 		newnode->next = NULL;
-    }
+	}
 }
