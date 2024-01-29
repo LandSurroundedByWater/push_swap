@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:55:50 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/27 10:23:42 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/29 09:13:36 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ void	flag_node(t_stack *stack, t_stack *temp, int max, int div)
 	while (temp != 0)
 	{
 		if (temp->order >= max && temp->order <= max + \
-		(ft_lstsize_ps(stack) / (ft_lstsize_ps(stack) / \
-		(div + ft_lstsize_ps(stack) / 30))))
+		(ft_lstsize_ps(stack) / div + ft_lstsize_ps(stack) / 50))
 		{
 			max = temp->order;
 			temp->flag = -1;
@@ -102,8 +101,7 @@ void	flag_node(t_stack *stack, t_stack *temp, int max, int div)
 	while (temp->flag != -1)
 	{
 		if (temp->order >= max && temp->order <= max + \
-		(ft_lstsize_ps(stack) / (ft_lstsize_ps(stack) / \
-		(div + ft_lstsize_ps(stack) / 30))))
+		(ft_lstsize_ps(stack) / div + ft_lstsize_ps(stack) / 50))
 		{
 			max = temp->order;
 			temp->flag = -1;

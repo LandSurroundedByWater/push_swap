@@ -6,7 +6,7 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 08:56:29 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/26 15:51:16 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/29 10:29:11 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdlib.h>
-# include <limits.h>
-# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -30,20 +25,13 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-void	ft_lstiter_ps(t_stack *stack, void (*f)(t_stack *));
-void	printnode(t_stack *node);
-
 int		is_biggest(t_stack **stack);
 void	update_indexes(t_stack **stack_a, t_stack **stack_b);
 int		is_sorted(t_stack *stack);
 void	push_not_flagged(t_stack **stack_a, t_stack **stack_b);
 void	set_order(t_stack **stack);
-int		find_index(t_stack *stack, int targetNum);
 void	count_costs_to_top(t_stack **stack_a, t_stack **stack_b);
-void	cost_to_top(t_stack **stack, t_stack *node);
-void	reset_flags(t_stack *stack);
 void	reset_costs(t_stack **stack_a, t_stack **stack_b);
-int		count_t_cst(t_stack *st_a, t_stack *st_b, t_stack *n_a, t_stack *n_b);
 void	find_cheapest_and_push(t_stack **stack_a, t_stack **stack_b);
 void	flag_increasing(t_stack *stack);
 void	check_dublicates(t_stack *stack_a, t_stack *new);
@@ -59,7 +47,6 @@ void	ft_lstadd_back_ps(t_stack **stack, t_stack *newnode);
 t_stack	*ft_last_node(t_stack *stack);
 t_stack	*ft_second_last_node(t_stack *stack);
 t_stack	*lowest(t_stack **stack);
-t_stack	*lowest_order(t_stack **stack);
 t_stack	*find_nearest_bigger(t_stack **stack, int num);
 
 void	mv_l_and_h(t_stack **st_a, t_stack **st_b, t_stack *n_a, t_stack *n_b);
@@ -69,11 +56,7 @@ void	mv_sm_nds(t_stack **st_a, t_stack **st_b, t_stack *n_a, t_stack *n_b);
 void	push_a_to_b(t_stack **stack_a, t_stack **stack_b);
 void	push_b_to_a(t_stack **stack_b, t_stack **stack_a);
 void	swap_a(t_stack **stack_a, t_stack **stack_b);
-void	swap_b(t_stack **stack_a, t_stack **stack_b);
-void	swap_both(t_stack **stack_a, t_stack **stack_b);
 
-void	rotate_bottom_to_top(t_stack **stack);
-void	rotate_top_to_bottom(t_stack **stack);
 void	rotate_a(t_stack **stack_a, t_stack **stack_b);
 void	rotate_b(t_stack **stack_a, t_stack **stack_b);
 void	rotate_both(t_stack **stack_a, t_stack **stack_b);

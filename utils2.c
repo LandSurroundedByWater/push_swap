@@ -6,23 +6,11 @@
 /*   By: tsaari <tsaari@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:07:02 by tsaari            #+#    #+#             */
-/*   Updated: 2024/01/27 07:57:48 by tsaari           ###   ########.fr       */
+/*   Updated: 2024/01/29 10:19:25 by tsaari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	reset_flags(t_stack *stack)
-{
-	t_stack	*temp;
-
-	temp = stack;
-	while (temp != NULL)
-	{
-		temp->order = 0;
-		temp = temp->next;
-	}
-}
 
 void	update_indexes(t_stack **stack_a, t_stack **stack_b)
 {
