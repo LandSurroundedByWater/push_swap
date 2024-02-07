@@ -22,3 +22,4 @@ rrr : rra and rrb at the same time.
 
 This was so fun and fascinating project. I tried to find out my own algorithm and wayt o do sorting. First I tried to analyze stack given so that I have as much information I need to start sorting. I tried to find out the longest increasing subsequence i.e. calculated from smallest node how many nodes are allready in order. That was not easy and I used algorithm which flags those nodes depended how big the stack is. Then I moved rest to stack B and startes to piut every node back one by one by calculating the "cheapest" node which I could move back.  I'm quite happy of my final result!
 
+EDIT: Minor mistake in code, it gives an error even if there is no arguments. I should just exit program.
