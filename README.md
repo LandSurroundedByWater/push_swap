@@ -1,5 +1,5 @@
 # push_swap
-push_swap project I made in Hive Helsinki!
+push_swap sorting algorithm project I made in Hive Helsinki!
 
 
 
